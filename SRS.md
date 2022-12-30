@@ -110,6 +110,4 @@
 - Suggestions to participate -- `Optional`
     - The bidder can get suggestions on the auctions in which he/she can participate.
 
-
-
 <br/>
