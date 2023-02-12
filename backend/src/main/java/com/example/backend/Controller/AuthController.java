@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin("*")
+
 public class AuthController {
     private UserDao userDao;
     private UserDetailsDao userDetailsDao;
