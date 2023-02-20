@@ -15,6 +15,9 @@ public class Product {
     private int age;
     @ManyToOne
     private Auction auction;
+    @ManyToOne
+    @JoinColumn(name = "userid")    
+    private UserEntity userEntity;
 
     public Product() {}
 
@@ -91,5 +94,28 @@ public class Product {
 
     public void setAuction(Auction auction) {
         this.auction = auction;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", basePrice=" + basePrice +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                ", age=" + age +
+                ", auction=" + auction +
+                ", userEntity=" + userEntity +
+                '}';
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 }

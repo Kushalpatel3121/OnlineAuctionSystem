@@ -16,17 +16,27 @@ public class Auction {
     private String type;
     private Date startingDate;
     private Date endingDate;
+    private int noOfProducts;
     private int noOfRegistration;
 
     public Auction() {}
 
-    public Auction(int id, String name, String type, Date startingDate, Date endingDate, int noOfRegistration) {
+    public Auction(int id, String name, String type, Date startingDate, Date endingDate,int noOfProducts, int noOfRegistration) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.startingDate = startingDate;
         this.endingDate = endingDate;
+        this.noOfProducts = noOfProducts;
         this.noOfRegistration = noOfRegistration;
+    }
+
+    public int getNoOfProducts() {
+        return noOfProducts;
+    }
+
+    public void setNoOfProducts(int noOfProducts) {
+        this.noOfProducts = noOfProducts;
     }
 
     public int getId() {
@@ -75,5 +85,18 @@ public class Auction {
 
     public void setNoOfRegistration(int noOfRegistration) {
         this.noOfRegistration = noOfRegistration;
+    }
+
+    @Override
+    public String toString() {
+        return "Auction{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", startingDate=" + startingDate +
+                ", endingDate=" + endingDate +
+                ", noOfProducts=" + noOfProducts +
+                ", noOfRegistration=" + noOfRegistration +
+                '}';
     }
 }
