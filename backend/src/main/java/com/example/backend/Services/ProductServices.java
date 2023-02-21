@@ -1,7 +1,9 @@
 package com.example.backend.Services;
 
-import org.springframework.stereotype.Service;
+import com.example.backend.Entities.Product;
 
-@Service
+
+
 public interface ProductServices {
+    public Product saveProduct(Product product);
 }

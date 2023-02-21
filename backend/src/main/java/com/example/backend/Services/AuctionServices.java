@@ -1,7 +1,10 @@
 package com.example.backend.Services;
 
-import org.springframework.stereotype.Service;
+import com.example.backend.Entities.Auction;
 
-@Service
+
+
 public interface AuctionServices {
+    public Auction saveAuction(Auction auction);
+    public Auction getAuctionById(int id);
 }

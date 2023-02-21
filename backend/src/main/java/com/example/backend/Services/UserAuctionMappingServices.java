@@ -1,7 +1,9 @@
 package com.example.backend.Services;
 
-import org.springframework.stereotype.Service;
+import com.example.backend.Entities.UserAuctionMapping;
 
-@Service
+
+
 public interface UserAuctionMappingServices {
+    public UserAuctionMapping saveUserAuctionMapping(UserAuctionMapping userAuctionMapping);
 }
