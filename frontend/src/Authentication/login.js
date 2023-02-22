@@ -1,6 +1,31 @@
 import { Outlet, Link } from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
+import {useState} from "react";
+import axios from "axios";
+import {apis} from "../Config/api";
+import 'react-toastify/dist/ReactToastify.css'
 
 function Login() {
+
+    let [loginInfo, setLoginInfo] = useState();
+
+    let changeInput = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        setLoginInfo(values => ({...values, [name]: value}));
+    }
+
+    let login = (e) => {
+        e.preventDefault();
+        axios.post(apis.login, loginInfo)
+            .then((response) => {
+                toast.success('Login Successful', {position:toast.POSITION.BOTTOM_CENTER})
+            })
+            .catch((error) => {
+                toast.error(error.response.status + ' Authorization Failed', {position:toast.POSITION.BOTTOM_CENTER});
+            })
+    }
+
     return (
         <>
             <div className="flex flex-row min-h-screen font-source-sans-pro bg-[#fb8500]">
@@ -17,16 +42,16 @@ function Login() {
                                 <div className="select-none">
                                     <label for="username"/> Username :
                                     <br/>
-                                    <input type="text" name="username" id="username" className="rounded-md mb-6 mt-1 w-64 h-7 border-solid border-2 focus:border-[#219ebc] focus:outline-none text-black p-2 text-sm"></input>
+                                    <input type="text" name="username" onChange={changeInput} id="username" className="rounded-md mb-6 mt-1 w-64 h-7 border-solid border-2 focus:border-[#219ebc] focus:outline-none text-black p-2 text-sm"></input>
                                 </div>
-                                
+
                                 <div className="select-none">
                                     <label for="password" /> Password :
                                     <br/>
-                                    <input type="password" name="password" id="password" className="rounded-md mb-6 mt-1 w-64 h-7 border-solid border-2 focus:border-[#219ebc] focus:outline-none text-black p-2 text-sm"></input>
+                                    <input type="password" name="password" onChange={changeInput} id="password" className="rounded-md mb-6 mt-1 w-64 h-7 border-solid border-2 focus:border-[#219ebc] focus:outline-none text-black p-2 text-sm"></input>
                                 </div>
                                 <div className="select-none">
-                                    <input type="submit" className="rounded-md bg-[#67e8f9]/75 text-black justify-self-center border-solid border-2 border-white/70 hover:border-[#121930] hover:bg-[#67e8f9]/60 mt-4 w-64 h-7" value={"Login"}></input>
+                                    <input type="submit" onClick={login} className="rounded-md bg-[#67e8f9]/75 text-black justify-self-center border-solid border-2 border-white/70 hover:border-[#121930] hover:bg-[#67e8f9]/60 mt-4 w-64 h-7" value={"Login"}></input>
                                 </div>
                             </form>
                         </div>
@@ -35,9 +60,10 @@ function Login() {
                             <p className="text-center underline underline-offset-2 text-white/70"><a href="#"><Link to="/signup">Sign Up</Link></a></p>
                         </div>
                     </div>
+
                 </div>
             </div>
-
+            <ToastContainer />
             <Outlet />
         </>
     );

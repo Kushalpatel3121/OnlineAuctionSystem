@@ -25,6 +25,7 @@ public class CustomUserDetailService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userDao.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
         return new User(user.getUsername(), user.getPassword(), mapRolesToAuthority(user.getRole()));
+
     }
 
     private Collection<GrantedAuthority> mapRolesToAuthority(String userRole)
