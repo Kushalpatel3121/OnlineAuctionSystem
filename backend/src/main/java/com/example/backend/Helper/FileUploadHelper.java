@@ -19,17 +19,6 @@ public class FileUploadHelper {
     {
         boolean f = false;
         try{
-
-/*
-            InputStream inputStream = multipartFile.getInputStream();
-            byte data[] = new byte[inputStream.available()];
-            inputStream.read(data);
-
-            FileOutputStream fileOutputStream = new FileOutputStream(UPLOAD_DIR + File.separator + multipartFile.getOriginalFilename() + new Date().getTime());
-            fileOutputStream.write(data);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-*/
             this.fileName = new Date().getTime() + multipartFile.getOriginalFilename();
             Files.copy(multipartFile.getInputStream(),
                     Paths.get(UPLOAD_DIR + File.separator + this.fileName),

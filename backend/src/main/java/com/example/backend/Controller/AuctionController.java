@@ -71,12 +71,20 @@ public class AuctionController {
 
         Auction auction = auctionServices.getAuctionById(auctionId);
 
+        if(auction == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Auction not found");
+
+        if(userAuctionMappingServices.isAlreadyRegister(userId, auctionId))
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already registered");
+        }
+
         UserAuctionMapping userAuctionMapping = new UserAuctionMapping();
         userAuctionMapping.setUserEntity(userEntity);
         userAuctionMapping.setAuction(auction);
 
-
         userAuctionMappingServices.saveUserAuctionMapping(userAuctionMapping);
+        auctionServices.incrementRegistration(auction);
 
         return ResponseEntity.ok("Registration successful");
     }
@@ -84,8 +92,7 @@ public class AuctionController {
     @GetMapping("/check-reg/{userId}/{auctionId}")
     public ResponseEntity<Boolean> checkRegistration(@PathVariable int userId, @PathVariable int auctionId)
     {
-        
-        return ResponseEntity.ok(Boolean.FALSE);
+        Boolean result = userAuctionMappingServices.isAlreadyRegister(userId, auctionId);
+        return ResponseEntity.ok(result);
     }
-
 }
