@@ -37,4 +37,18 @@ public class AuctionServiceImpl implements AuctionServices {
         return auction;
     }
 
+    @Override
+    public Auction incrementRegistration(Auction auction) {
+        try {
+            auction.setNoOfRegistration(auction.getNoOfRegistration() + 1);
+            auctionDao.save(auction);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+        return auction;
+    }
+
 }

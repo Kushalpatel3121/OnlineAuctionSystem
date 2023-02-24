@@ -44,4 +44,13 @@ public class UserAuctionMapping {
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
+
+    @Override
+    public String toString() {
+        return "UserAuctionMapping{" +
+                "id=" + id +
+                ", auction=" + auction +
+                ", userEntity=" + userEntity +
+                '}';
+    }
 }

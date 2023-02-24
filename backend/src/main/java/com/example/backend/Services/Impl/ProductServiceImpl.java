@@ -23,4 +23,18 @@ public class ProductServiceImpl implements ProductServices{
         }
         return product;
     }
+
+    @Override
+    public Product getProductById(int id) {
+        Product product;
+        try{
+            product = productDao.findById(id).get();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+        return product;
+    }
 }
