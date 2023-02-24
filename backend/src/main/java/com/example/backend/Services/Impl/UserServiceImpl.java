@@ -71,5 +71,16 @@ public class UserServiceImpl implements UserServices {
         return loginDto;
     }
 
+    @Override
+    public Boolean isUserExistByUsername(String username) {
+        Boolean check = userDao.existsByUsername(username);
+        return check;
+    }
+
+    @Override
+    public Boolean isUserExistByEmail(String email) {
+        Boolean check = userDao.existsByEmail(email);
+        return check;
+    }
 
 }

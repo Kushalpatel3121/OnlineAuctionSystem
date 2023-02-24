@@ -17,7 +17,7 @@ public class RegisterDto {
     String line2;
     String city;
     Long pincode;
-    String role;
+    String role = "ROLE_USER";
 
     public RegisterDto() {}
 
