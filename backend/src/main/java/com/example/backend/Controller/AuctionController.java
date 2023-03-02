@@ -1,15 +1,9 @@
 package com.example.backend.Controller;
 
 import com.example.backend.Dto.AuctionProductDto;
-import com.example.backend.Entities.Auction;
-import com.example.backend.Entities.Product;
-import com.example.backend.Entities.UserAuctionMapping;
-import com.example.backend.Entities.UserEntity;
+import com.example.backend.Entities.*;
 import com.example.backend.Helper.FileUploadHelper;
-import com.example.backend.Services.AuctionServices;
-import com.example.backend.Services.ProductServices;
-import com.example.backend.Services.UserAuctionMappingServices;
-import com.example.backend.Services.UserServices;
+import com.example.backend.Services.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +23,14 @@ public class AuctionController {
     @Autowired
     private ProductServices productServices;
     @Autowired
+    private BiddingService biddingService;
+    @Autowired
     private UserAuctionMappingServices userAuctionMappingServices;
     @Autowired
     private FileUploadHelper fileUploadHelper;
 
-
     @PostMapping("/create-auction/{userId}")
-    public ResponseEntity<Product> createAuction(@PathVariable int userId, @RequestParam("productImage") MultipartFile file,
+    public ResponseEntity createAuction(@PathVariable int userId, @RequestParam("productImage") MultipartFile file,
                                                  @RequestParam("auctionProductData") String auctionProductData)
             throws JsonProcessingException {
 
@@ -46,9 +41,12 @@ public class AuctionController {
         auctionProductDto.changeDate();
         Auction auction = auctionProductDto.getAuction();
 
-        auctionServices.saveAuction(auction);
+        ResponseEntity response = fileUploadHelper.uploadFile(file);
 
-        fileUploadHelper.uploadFile(file);
+        if(response.getStatusCode() == HttpStatus.BAD_REQUEST)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Upload image file only");
+
+        auctionServices.saveAuction(auction);
         Product product = auctionProductDto.getProduct(fileUploadHelper.fileName, auction);
 
 
@@ -56,6 +54,12 @@ public class AuctionController {
 
         product.setUserEntity(userEntity);
         productServices.saveProduct(product);
+
+        Bidding bidding = new Bidding();
+        bidding.setCurrentBid(product.getBasePrice());
+        bidding.setProduct(product);
+        bidding.setUserEntity(userEntity);
+        biddingService.saveBidding(bidding);
 
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -94,5 +98,19 @@ public class AuctionController {
     {
         Boolean result = userAuctionMappingServices.isAlreadyRegister(userId, auctionId);
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity getAuction(@PathVariable int id)
+    {
+        Auction auction = auctionServices.getAuctionById(id);
+        return new ResponseEntity(auction, HttpStatus.OK);
+    }
+
+    @GetMapping("product/{id}")
+    public ResponseEntity getProduct(@PathVariable int id)
+    {
+        Product product = productServices.getProductById(id);
+        return new ResponseEntity(product, HttpStatus.OK);
     }
 }

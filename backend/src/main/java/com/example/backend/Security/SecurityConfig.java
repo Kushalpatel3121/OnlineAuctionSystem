@@ -34,6 +34,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**")
                 .permitAll()
+                .and()
+                .authorizeHttpRequests().requestMatchers("/ws/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
