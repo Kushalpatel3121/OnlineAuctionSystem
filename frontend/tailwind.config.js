@@ -59,6 +59,9 @@ module.exports = {
         'login-bg-2': "url('../public/images/auction-2.jpg')",
         'signup-bg-1': "url('../public/images/auction-3.jpg')",
       },
+      transitionDuration:{
+        '50':'50ms',
+      }
     },
   },
   plugins: [],
