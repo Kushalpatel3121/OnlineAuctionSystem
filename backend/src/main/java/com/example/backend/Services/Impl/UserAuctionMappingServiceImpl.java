@@ -3,12 +3,14 @@ package com.example.backend.Services.Impl;
 import com.example.backend.Dao.AuctionDao;
 import com.example.backend.Dao.UserAuctionMappingDao;
 import com.example.backend.Dao.UserDao;
+import com.example.backend.Entities.Auction;
 import com.example.backend.Entities.UserAuctionMapping;
 import com.example.backend.Entities.UserEntity;
 import com.example.backend.Services.UserAuctionMappingServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,5 +48,25 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
         }
 
         return Boolean.FALSE;
+    }
+
+    @Override
+    public List<UserEntity> getAllRegisteredUser(int auctionID) {
+        List<UserEntity> userEntities = new ArrayList<>();
+        try{
+            Auction auction = auctionDao.getAuctionById(auctionID);
+            List<UserAuctionMapping> userAuctionMappingList = userAuctionMappingDao.findAllByAuction(auction);
+
+            for(UserAuctionMapping item : userAuctionMappingList)
+            {
+                userEntities.add(item.getUserEntity());
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+        return userEntities;
     }
 }

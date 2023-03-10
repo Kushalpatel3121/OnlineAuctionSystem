@@ -1,12 +1,11 @@
 package com.example.backend.Controller;
 
-import com.example.backend.Dto.BiddingDto;
+
 import com.example.backend.Entities.Bidding;
 import com.example.backend.Services.AuctionServices;
 import com.example.backend.Services.BiddingService;
 import com.example.backend.Services.ProductServices;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -38,6 +37,7 @@ public class SocketController {
     public ResponseEntity bid(@DestinationVariable int auctionId, @DestinationVariable int productId,
                               @RequestBody Bidding bidding) throws JsonProcessingException {
 //        biddingService.updateBid(bidding);
+//        System.out.println(bidding);
         return ResponseEntity.ok(bidding);
     }
 

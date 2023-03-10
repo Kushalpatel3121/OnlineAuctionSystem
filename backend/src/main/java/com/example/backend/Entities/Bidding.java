@@ -15,6 +15,16 @@ public class Bidding {
     @JoinColumn(name = "bid_on")
     private Product product;
 
+    @Override
+    public String toString() {
+        return "Bidding{" +
+                "id=" + id +
+                ", currentBid=" + currentBid +
+                ", userEntity=" + userEntity +
+                ", product=" + product +
+                '}';
+    }
+
     public Bidding() {
     }
 

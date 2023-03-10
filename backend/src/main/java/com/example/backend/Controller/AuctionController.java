@@ -1,5 +1,4 @@
 package com.example.backend.Controller;
-
 import com.example.backend.Dto.AuctionProductDto;
 import com.example.backend.Entities.*;
 import com.example.backend.Helper.FileUploadHelper;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
 
 @RestController
 @RequestMapping("/auction")
@@ -33,13 +33,14 @@ public class AuctionController {
     public ResponseEntity createAuction(@PathVariable int userId, @RequestParam("productImage") MultipartFile file,
                                                  @RequestParam("auctionProductData") String auctionProductData)
             throws JsonProcessingException {
-
         ObjectMapper objectMapper = new ObjectMapper();
         AuctionProductDto auctionProductDto = objectMapper.readValue(auctionProductData, AuctionProductDto.class);
 
-
         auctionProductDto.changeDate();
         Auction auction = auctionProductDto.getAuction();
+        UserEntity userEntity = userServices.getUserById(userId);
+
+        auction.setUserEntity(userEntity);
 
         ResponseEntity response = fileUploadHelper.uploadFile(file);
 
@@ -49,10 +50,6 @@ public class AuctionController {
         auctionServices.saveAuction(auction);
         Product product = auctionProductDto.getProduct(fileUploadHelper.fileName, auction);
 
-
-        UserEntity userEntity = userServices.getUserById(userId);
-
-        product.setUserEntity(userEntity);
         productServices.saveProduct(product);
 
         Bidding bidding = new Bidding();
@@ -64,7 +61,7 @@ public class AuctionController {
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
-    @GetMapping("/register-user/{userId}/{auctionId}")
+    @GetMapping("/register-user/{auctionId}/{userId}")
     public ResponseEntity registerForAuction(@PathVariable int auctionId, @PathVariable int userId)
     {
         UserEntity userEntity;
@@ -77,6 +74,9 @@ public class AuctionController {
 
         if(auction == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Auction not found");
+
+        if(auction.getUserEntity() == userEntity)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You are auction creator");
 
         if(userAuctionMappingServices.isAlreadyRegister(userId, auctionId))
         {
@@ -100,17 +100,10 @@ public class AuctionController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity getAuction(@PathVariable int id)
+    @GetMapping("get-all-user/{auctionId}")
+    public ResponseEntity getRegisteredUser(@PathVariable int auctionId)
     {
-        Auction auction = auctionServices.getAuctionById(id);
-        return new ResponseEntity(auction, HttpStatus.OK);
-    }
-
-    @GetMapping("product/{id}")
-    public ResponseEntity getProduct(@PathVariable int id)
-    {
-        Product product = productServices.getProductById(id);
-        return new ResponseEntity(product, HttpStatus.OK);
+        List<UserEntity> userEntities = userAuctionMappingServices.getAllRegisteredUser(auctionId);
+        return ResponseEntity.ok(userEntities);
     }
 }
