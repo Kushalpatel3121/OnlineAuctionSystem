@@ -1,9 +1,6 @@
 package com.example.backend.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -18,7 +15,9 @@ public class Auction {
     private Date endingDate;
     private int noOfProducts;
     private int noOfRegistration;
-
+    @ManyToOne
+    @JoinColumn(name = "created-by")
+    private UserEntity userEntity;
     public Auction() {}
 
     public Auction(int id, String name, String type, Date startingDate, Date endingDate,int noOfProducts, int noOfRegistration) {
@@ -87,6 +86,14 @@ public class Auction {
         this.noOfRegistration = noOfRegistration;
     }
 
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
     @Override
     public String toString() {
         return "Auction{" +
@@ -97,6 +104,7 @@ public class Auction {
                 ", endingDate=" + endingDate +
                 ", noOfProducts=" + noOfProducts +
                 ", noOfRegistration=" + noOfRegistration +
+                ", userEntity=" + userEntity +
                 '}';
     }
 }
