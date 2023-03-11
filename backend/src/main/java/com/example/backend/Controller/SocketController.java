@@ -1,6 +1,5 @@
 package com.example.backend.Controller;
 
-
 import com.example.backend.Entities.Bidding;
 import com.example.backend.Services.AuctionServices;
 import com.example.backend.Services.BiddingService;
@@ -40,5 +39,4 @@ public class SocketController {
 //        System.out.println(bidding);
         return ResponseEntity.ok(bidding);
     }
-
 }

@@ -106,4 +106,6 @@ public class AuctionController {
         List<UserEntity> userEntities = userAuctionMappingServices.getAllRegisteredUser(auctionId);
         return ResponseEntity.ok(userEntities);
     }
+
+
 }
