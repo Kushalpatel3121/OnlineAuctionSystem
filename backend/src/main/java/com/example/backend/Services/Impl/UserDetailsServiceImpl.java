@@ -3,6 +3,7 @@ package com.example.backend.Services.Impl;
 
 import com.example.backend.Dao.UserDetailsDao;
 import com.example.backend.Entities.UserDetails;
+import com.example.backend.Entities.UserEntity;
 import com.example.backend.Services.UserDetailsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,19 @@ public class UserDetailsServiceImpl implements UserDetailsServices {
             throw e;
         }
         return userDetails;
+    }
+
+    @Override
+    public UserDetails getUserDetailsByUser(UserEntity userEntity) {
+        try{
+            UserDetails userDetails = userDetailsDao.findByUserEntity(userEntity);
+            return userDetails;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
 }

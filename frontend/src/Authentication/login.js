@@ -1,14 +1,16 @@
 // import React from 'react';
 import axios from "axios";
 import { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import {Outlet, Link, useNavigate} from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { apis } from "../Config/api";
 import "react-toastify/dist/ReactToastify.css"
 
+
 const Login = () => {
 
     let [loginInfo, setLoginInfo] = useState();
+    let navigate = useNavigate();
 
     let changeInfo = (e) => {
         setLoginInfo(values => ({...values, [e.target.name]: e.target.value}))
@@ -17,14 +19,15 @@ const Login = () => {
     let login = (e) => {
         e.preventDefault();
 
-        console.log(loginInfo)
-
         axios.post(apis.login, loginInfo)
         .then( (res) => {
-            toast.success("Login Successful", {position: "bottom-right"})
+            localStorage.setItem("token", res.data.accessToken);
+            navigate("../dashboard");
+            toast.success("Login Successful", {position: "bottom-right"});
         })
         .catch( (err) => {
-            toast.error("Username or Password is incorrect", {position: "bottom-right"})
+            console.log(err)
+            toast.error("Username or Password is incorrect", {position: "bottom-right"});
         })
     }
 

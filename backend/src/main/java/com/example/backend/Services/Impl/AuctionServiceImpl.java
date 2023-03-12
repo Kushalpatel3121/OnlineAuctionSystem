@@ -2,9 +2,12 @@ package com.example.backend.Services.Impl;
 
 import com.example.backend.Dao.AuctionDao;
 import com.example.backend.Entities.Auction;
+import com.example.backend.Entities.UserEntity;
 import com.example.backend.Services.AuctionServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AuctionServiceImpl implements AuctionServices {
@@ -49,6 +52,18 @@ public class AuctionServiceImpl implements AuctionServices {
             throw e;
         }
         return auction;
+    }
+
+    @Override
+    public List<Auction> getAllAuctions() {
+        List<Auction> auctions = auctionDao.findAll();
+        return auctions;
+    }
+
+    @Override
+    public List<Auction> getAllOfUser(UserEntity userEntity) {
+        List<Auction> auctions = auctionDao.findAllByUserEntity(userEntity);
+        return auctions;
     }
 
 }

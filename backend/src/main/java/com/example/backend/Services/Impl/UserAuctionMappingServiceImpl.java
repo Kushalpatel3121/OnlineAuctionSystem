@@ -1,9 +1,11 @@
 package com.example.backend.Services.Impl;
 
 import com.example.backend.Dao.AuctionDao;
+import com.example.backend.Dao.ProductDao;
 import com.example.backend.Dao.UserAuctionMappingDao;
 import com.example.backend.Dao.UserDao;
 import com.example.backend.Entities.Auction;
+import com.example.backend.Entities.Product;
 import com.example.backend.Entities.UserAuctionMapping;
 import com.example.backend.Entities.UserEntity;
 import com.example.backend.Services.UserAuctionMappingServices;
@@ -21,6 +23,8 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
     private UserDao userDao;
     @Autowired
     private AuctionDao auctionDao;
+    @Autowired
+    private ProductDao productDao;
 
     @Override
     public UserAuctionMapping saveUserAuctionMapping(UserAuctionMapping userAuctionMapping) {
@@ -68,5 +72,18 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
             throw e;
         }
         return userEntities;
+    }
+
+    @Override
+    public List<Product> getAllRegistered(UserEntity userEntity) {
+        List<UserAuctionMapping> userAuctionMappings = userAuctionMappingDao.findAllByUserEntity(userEntity);
+        List<Product> products = new ArrayList<>();
+
+        for(UserAuctionMapping userAuctionMapping: userAuctionMappings)
+        {
+            Product product = productDao.findByAuction(userAuctionMapping.getAuction());
+            products.add(product);
+        }
+        return products;
     }
 }

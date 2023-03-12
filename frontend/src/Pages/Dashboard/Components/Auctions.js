@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import '../Styles/Auctions.css'
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -21,6 +21,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import axios from "axios";
+import {apis} from "../../../Config/api";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -36,13 +38,13 @@ const columns = [
         align: 'right',
     },
     {
-        id: 'startdate',
+        id: 'startingDate',
         label: 'Starts at',
         minWidth: 170,
         align: 'right',
     },
     {
-        id: 'endingdate',
+        id: 'endingDate',
         label: 'Ends at',
         minWidth: 170,
         align: 'right',
@@ -53,37 +55,28 @@ function createData(name, type, category, startdate, endingdate) {
     return { name, type, category, startdate, endingdate };
 }
 
-const rows = [
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-    createData('Dummy', 'long', 'Antique', "5/3/23", '7/3/23'),
-];
+
 
 const Auctions = () => {
+    const [rows, setRows] = useState([]);
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [open, setOpen] = React.useState(false);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [open, setOpen] = useState(false);
+    const [token, setToken] = useState(localStorage.getItem("token"));
+
+    let loadAllAuctions = async () => {
+        await axios.get(apis.getAllAuctions, {headers:{Authorization: token}})
+            .then((res) => {
+                setRows(res.data);
+            })
+            .catch((err) => {});
+    }
+
+
+    useEffect(() => {
+            loadAllAuctions();
+    }, []);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);

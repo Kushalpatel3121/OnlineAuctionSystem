@@ -1,7 +1,9 @@
 package com.example.backend.Controller;
 
+import com.example.backend.Entities.UserDetails;
 import com.example.backend.Entities.UserEntity;
 import com.example.backend.Security.TokenGenerator;
+import com.example.backend.Services.UserDetailsServices;
 import com.example.backend.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +19,10 @@ public class HomeController {
     private TokenGenerator tokenGenerator;
     @Autowired
     private UserServices userServices;
+    @Autowired
+    private UserDetailsServices userDetailsServices;
 
-    @GetMapping("/get-user")
+    @GetMapping("/get-details")
     public ResponseEntity getUserFromToken(@RequestHeader("Authorization") String token)
     {
         UserEntity userEntity;
@@ -28,10 +32,12 @@ public class HomeController {
             if(tokenGenerator.validateToken(token))
             {
                 String username = tokenGenerator.getUserFromJwt(token);
-                userEntity = userServices.findUserByUsernameOrEmail(username, username);
-                return ResponseEntity.ok(userEntity);
+                userEntity = userServices.findUserByUsername(username);
+                UserDetails userDetails = userDetailsServices.getUserDetailsByUser(userEntity);
+                return ResponseEntity.ok(userDetails);
             }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Server error");
     }
+
 }

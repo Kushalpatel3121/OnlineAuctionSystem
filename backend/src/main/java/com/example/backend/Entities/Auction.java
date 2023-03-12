@@ -15,12 +15,13 @@ public class Auction {
     private Date endingDate;
     private int noOfProducts;
     private int noOfRegistration;
+    private Boolean isCompleted = false;
     @ManyToOne
     @JoinColumn(name = "created-by")
     private UserEntity userEntity;
     public Auction() {}
 
-    public Auction(int id, String name, String type, Date startingDate, Date endingDate,int noOfProducts, int noOfRegistration) {
+    public Auction(int id, String name, String type, Date startingDate, Date endingDate,int noOfProducts, int noOfRegistration, Boolean isCompleted) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -28,6 +29,15 @@ public class Auction {
         this.endingDate = endingDate;
         this.noOfProducts = noOfProducts;
         this.noOfRegistration = noOfRegistration;
+        this.isCompleted = isCompleted;
+    }
+
+    public Boolean getCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(Boolean completed) {
+        isCompleted = completed;
     }
 
     public int getNoOfProducts() {

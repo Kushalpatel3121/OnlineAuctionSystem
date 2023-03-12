@@ -1,7 +1,9 @@
 package com.example.backend.Controller;
 import com.example.backend.Dto.AuctionProductDto;
+import com.example.backend.Dto.AuctionResponse;
 import com.example.backend.Entities.*;
 import com.example.backend.Helper.FileUploadHelper;
+import com.example.backend.Security.TokenGenerator;
 import com.example.backend.Services.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,6 +32,16 @@ public class AuctionController {
     private UserAuctionMappingServices userAuctionMappingServices;
     @Autowired
     private FileUploadHelper fileUploadHelper;
+    @Autowired
+    private TokenGenerator tokenGenerator;
+
+    public UserEntity getUserFromToken(String token)
+    {
+        UserEntity userEntity;
+        token = token.substring(7);
+        userEntity = userServices.findUserByUsername(tokenGenerator.getUserFromJwt(token));
+        return userEntity;
+    }
 
     @PostMapping("/create-auction/{userId}")
     public ResponseEntity createAuction(@PathVariable int userId, @RequestParam("productImage") MultipartFile file,
@@ -39,6 +53,8 @@ public class AuctionController {
         auctionProductDto.changeDate();
         Auction auction = auctionProductDto.getAuction();
         UserEntity userEntity = userServices.getUserById(userId);
+        if(userEntity == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not exist");
 
         auction.setUserEntity(userEntity);
 
@@ -100,12 +116,58 @@ public class AuctionController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("get-all-user/{auctionId}")
+    @GetMapping("/get-all-user/{auctionId}")
     public ResponseEntity getRegisteredUser(@PathVariable int auctionId)
     {
         List<UserEntity> userEntities = userAuctionMappingServices.getAllRegisteredUser(auctionId);
         return ResponseEntity.ok(userEntities);
     }
+
+    @GetMapping("/get-numbers")
+    public ResponseEntity totalNumberOfAuctions()
+    {
+        List<Auction> auctions = auctionServices.getAllAuctions();
+        return ResponseEntity.ok(auctions.size());
+    }
+
+    @GetMapping("/get-numbers-user")
+    public ResponseEntity totalOfYours(@RequestHeader("Authorization") String token)
+    {
+        UserEntity userEntity = getUserFromToken(token);
+        List<Auction> auctions = auctionServices.getAllOfUser(userEntity);
+        return ResponseEntity.ok(auctions.size());
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity getAllAuctions()
+    {
+        List<Auction> auctions = auctionServices.getAllAuctions();
+        List<AuctionResponse> auctionResponses = new ArrayList<>();
+        for(Auction auction: auctions)
+        {
+            Product product = productServices.getProductByAuction(auction);
+
+            String startDate = auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
+
+            String endDate =(auction.getType().equals("Live"))? "Until Auction is running" :auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
+
+            AuctionResponse auctionResponse = new AuctionResponse(auction.getId(), auction.getName(), auction.getType(), product.getCategory(),startDate, endDate, product);
+
+            auctionResponses.add(auctionResponse);
+        }
+        return ResponseEntity.ok(auctionResponses);
+    }
+
+    @GetMapping("/get-all-registered")
+    public ResponseEntity getTotalRegisteredAuction(@RequestHeader("Authorization") String token)
+    {
+        UserEntity userEntity = getUserFromToken(token);
+        List<Product> products = userAuctionMappingServices.getAllRegistered(userEntity);
+        return ResponseEntity.ok(products.size());
+    }
+
+
+
 
 
 }

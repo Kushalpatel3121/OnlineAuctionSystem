@@ -112,7 +112,8 @@ public class AuthController {
          */
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = tokenGenerator.generateToken(authentication);
+        UserEntity userEntity = userServices.findUserByUsernameOrEmail(loginDto.getUsername(), loginDto.getUsername());
 
-        return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthResponseDto(token, userEntity), HttpStatus.OK);
     }
 }

@@ -4,11 +4,9 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const Subheader = () => {
@@ -33,14 +31,14 @@ const Subheader = () => {
         <div className='grid grid-cols-3 gap-3 divide-solid divide-x'>
           {/* for New */}
           <div className='min-w-max dropdown inline-block mx-4'>
-            <div className='flex flex-row justify-center items-center rounded-sm hover:bg-primary-gray-1 hover:text-primary-white-1'>
+            <div className='flex flex-row justify-center items-center rounded-sm hover:bg-primary-gray-1 cursor-pointer hover:text-primary-white-1'>
               <p className='py-1 px-3'>Auction</p>
               {/* <img src='images/arrow.png' id="arrow" className='w-3 h-3 transition duration-50 ease-in-out hover:rotate-90'></img> */}
             </div>
             <div>
               <ul className='dropdown-menu hidden py-3 px-3 bg-primary-white-1/90 absolute rounded-t rounded-b min-w-max left-[2.5%] divide-y divide-solid'>
                 {/* <li className='hover:bg-secondary-sup-gray-4 whitespace-no-wrap block py-1 px-1 mb-1 rounded-sm'>Register</li> */}
-                <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm' onClick={handleClickOpen}>New Auction</li>
+                <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 cursor-pointer whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm' onClick={handleClickOpen}>New Auction</li>
                 <Dialog open={open} onClose={handleClose}>
                   <DialogTitle>New Auction</DialogTitle>
                   <DialogContent>
@@ -84,17 +82,17 @@ const Subheader = () => {
           </div>
           {/* For Categories */}
           <div className='min-w-max dropdown inline-block'>
-            <div className='flex flex-row justify-center items-center rounded-sm hover:bg-primary-gray-1 hover:text-primary-white-1'>
+            <div className='flex flex-row justify-center items-center rounded-sm hover:bg-primary-gray-1 hover:text-primary-white-1 cursor-pointer'>
               <p className='py-1 px-3'>Categories</p>
               {/* <img src='images/arrow.png' id="arrow" className='w-3 h-3 transition duration-50 ease-in-out hover:rotate-90'></img> */}
             </div>
             <div className='z-10'>
               <ul className='dropdown-menu hidden py-3 px-3 bg-primary-white-1/90 absolute rounded-t rounded-b min-w-max left-[12.5%] divide-y divide-solid'>
-                <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
-                <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mb-1 rounded-sm'>Auction</li>
-                <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
-                <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
-                <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
+                <li className='hover:bg-primary-dark-1 cursor-pointer hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
+                <li className='hover:bg-primary-dark-1 cursor-pointer hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mb-1 rounded-sm'>Auction</li>
+                <li className='hover:bg-primary-dark-1 cursor-pointer hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
+                <li className='hover:bg-primary-dark-1 cursor-pointer hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
+                <li className='hover:bg-primary-dark-1 cursor-pointer hover:text-primary-white-1 whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm'>Complaint</li>
               </ul>
             </div>
           </div>
