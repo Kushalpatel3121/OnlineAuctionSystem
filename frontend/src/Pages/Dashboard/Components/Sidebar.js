@@ -1,15 +1,18 @@
 import React from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
+  const [isHomeActive,setHomeActive] = useState(true);
   return (
     <>
         <div className='flex flex-col bg-primary-blue-light/90 text-primary-white-1 w-[16%] min-h-[87vh] max-h-max text-center justify-between'>
             <div className='mt-4'>
               <ul className='flex flex-col list-none'>
-                <li className='mb-3 hover:bg-primary-blue visited:bg-primary-blue p-6'><a href='' className='active:bg-primary-blue'>Home</a></li>
-                <li className='mb-3 hover:bg-primary-blue visited:bg-primary-blue p-6'><a href='' className='active:bg-primary-blue'>My Listings</a></li>
-                <li className='mb-3 active:bg-primary-blue hover:bg-primary-blue p-6'><a href=''>My Bids</a></li>
-                <li className='active:bg-primary-blue hover:bg-primary-blue p-6'><a href=''>Reminders</a></li>
+                <li className='mb-3 hover:bg-primary-blue p-6' onClick={() => setHomeActive(!isHomeActive)}><a href=''><Link to='/dashboard'>Home</Link></a></li>
+                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''>My Listings</a></li>
+                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''>My Bids</a></li>
+                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''>Reminders</a></li>
               </ul>
             </div>
             <div className='flex flex-row justify-center align-middle mb-5 ml-2'>

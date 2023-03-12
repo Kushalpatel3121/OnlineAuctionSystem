@@ -1,5 +1,5 @@
 import React from 'react'
-import './Styles/Header.css'
+import '../Styles/Header.css'
 
 const Header = () => {
   return (
@@ -19,7 +19,7 @@ const Header = () => {
               <img src='images/account-icon-48.png' alt='account-icon'></img>
             </button>
             <div>
-              <ul className='dropdown-menu hidden py-3 px-3 bg-primary-blue-light/90 absolute rounded-t rounded-b w-32 right-[1%] divide-y divide-solid'>
+              <ul className='dropdown-menu hidden py-3 px-3 bg-primary-blue-light/90 absolute rounded-t rounded-b w-32 right-[1%] divide-y divide-solid z-10'>
                 <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mb-1 rounded-sm'>My Profile</a></li>
                 <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mt-1 rounded-sm'>Log Out</a></li>
               </ul>

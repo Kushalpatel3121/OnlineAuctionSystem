@@ -34,7 +34,6 @@ const Login = () => {
                                 <p>Don't have an account?</p>
                                 <p className="underline underline-offset-2 text-white/70"><a href="#"><Link to="/signup">Sign Up</Link></a></p>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -43,4 +42,4 @@ const Login = () => {
     )
 }
 
-    export default Login;
+export default Login;
