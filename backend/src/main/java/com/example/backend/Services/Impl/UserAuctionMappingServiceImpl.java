@@ -81,6 +81,9 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
 
         for(UserAuctionMapping userAuctionMapping: userAuctionMappings)
         {
+            if(userAuctionMapping.getAuction().getCompleted() == true)
+                continue;
+
             Product product = productDao.findByAuction(userAuctionMapping.getAuction());
             products.add(product);
         }
