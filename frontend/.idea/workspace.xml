@@ -5,12 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3022cf16-6443-420b-8ead-11a4c0ab183c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dto/AuctionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/AuctionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/AuctionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/UserDetailsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/UserDetailsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dto/AuthResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dto/AuthResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/AuctionServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/AuctionServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/AuctionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/AuctionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/ProductServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/ProductServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserDetailsServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserDetailsServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Authentication/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authentication/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auctions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Subheader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Subheader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/SummaryBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/SummaryBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Profile/Components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Profile/Components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Profile/Components/Personalinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Profile/Components/Personalinfo.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +71,18 @@
       <recent name="C:\Users\vivek\Desktop\OnlineAuctionSystem\frontend\src" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,6 +94,10 @@
       <workItem from="1676198636694" duration="1000" />
       <workItem from="1676200938042" duration="353000" />
       <workItem from="1676201314360" duration="296000" />
+      <workItem from="1678557955571" duration="345000" />
+      <workItem from="1678602783020" duration="3861000" />
+      <workItem from="1678610684996" duration="10801000" />
+      <workItem from="1678631115396" duration="14243000" />
     </task>
     <servers />
   </component>

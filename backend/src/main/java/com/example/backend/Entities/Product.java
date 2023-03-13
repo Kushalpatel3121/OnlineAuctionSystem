@@ -15,22 +15,11 @@ public class Product {
     private int age;
     @ManyToOne
     private Auction auction;
-    @ManyToOne
-    @JoinColumn(name = "userid")    
-    private UserEntity userEntity;
+
 
     public Product() {}
 
-    public Product(int id, String name, String category, int basePrice, String image, String description, int age, Auction auction) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.basePrice = basePrice;
-        this.image = image;
-        this.description = description;
-        this.age = age;
-        this.auction = auction;
-    }
+
 
     public int getId() {
         return id;
@@ -107,15 +96,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", age=" + age +
                 ", auction=" + auction +
-                ", userEntity=" + userEntity +
                 '}';
     }
 
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
 }

@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
 import Subheader from './Components/Subheader';
 import Updates from './Components/Updates';
 import SummaryBox from './Components/SummaryBox';
 import Auctions from './Components/Auctions';
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import {apis} from "../../Config/api";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+
+  useEffect(()=>{
+    axios.get(apis.getUserDetails, { headers: { Authorization: token}})
+        .then((res)=>{
+
+        })
+        .catch((err)=>{
+          navigate("../../login")
+        });
+
+  }, [])
   return (
     <>
       <div>
@@ -32,7 +49,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
       </div>
     </>
   )

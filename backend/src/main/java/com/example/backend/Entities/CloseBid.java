@@ -3,19 +3,21 @@ package com.example.backend.Entities;
 import jakarta.persistence.*;
 
 @Entity
-public class UserAuctionMapping {
+public class CloseBid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
     private Auction auction;
+
     @ManyToOne
     private UserEntity userEntity;
 
-    public UserAuctionMapping() {}
+    public CloseBid() {
+    }
 
-    public UserAuctionMapping(int id, Auction auction, UserEntity userEntity) {
+    public CloseBid(int id, Auction auction, UserEntity userEntity) {
         this.id = id;
         this.auction = auction;
         this.userEntity = userEntity;
@@ -47,7 +49,7 @@ public class UserAuctionMapping {
 
     @Override
     public String toString() {
-        return "UserAuctionMapping{" +
+        return "CloseBid{" +
                 "id=" + id +
                 ", auction=" + auction +
                 ", userEntity=" + userEntity +

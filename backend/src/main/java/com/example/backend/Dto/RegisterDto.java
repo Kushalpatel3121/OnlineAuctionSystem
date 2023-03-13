@@ -16,9 +16,8 @@ public class RegisterDto {
     String line1;
     String line2;
     String city;
-    String state;
     Long pincode;
-    String role;
+    String role = "ROLE_USER";
 
     public RegisterDto() {}
 
@@ -31,7 +30,7 @@ public class RegisterDto {
     public UserDetails getUserDetail()
     {
         UserEntity user = new UserEntity(username, email, password, role);
-        UserDetails userDetails = new UserDetails(name, mobile, hNo, line1, line2, city, state, pincode, user);
+        UserDetails userDetails = new UserDetails(name, mobile, hNo, line1, line2, city, pincode, user);
         return userDetails;
     }
 
@@ -105,14 +104,6 @@ public class RegisterDto {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public Long getPincode() {

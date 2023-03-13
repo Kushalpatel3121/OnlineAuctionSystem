@@ -62,6 +62,19 @@ public class UserServiceImpl implements UserServices {
     }
 
     @Override
+    public UserEntity findUserByUsername(String username) {
+        try{
+         UserEntity userEntity = userDao.getByUsername(username);
+         return userEntity;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
     public LoginDto changeUsername(LoginDto loginDto) {
         UserEntity userEntity = userDao.findByEmail(loginDto.getUsername());
         if(userEntity != null)
@@ -71,5 +84,16 @@ public class UserServiceImpl implements UserServices {
         return loginDto;
     }
 
+    @Override
+    public Boolean isUserExistByUsername(String username) {
+        Boolean check = userDao.existsByUsername(username);
+        return check;
+    }
+
+    @Override
+    public Boolean isUserExistByEmail(String email) {
+        Boolean check = userDao.existsByEmail(email);
+        return check;
+    }
 
 }
