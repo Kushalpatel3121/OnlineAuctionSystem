@@ -1,6 +1,7 @@
 package com.example.backend.Services.Impl;
 
 import com.example.backend.Dao.ProductDao;
+import com.example.backend.Entities.Auction;
 import com.example.backend.Entities.Product;
 import com.example.backend.Services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,32 @@ public class ProductServiceImpl implements ProductServices{
             throw e;
         }
         return product;
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        Product product;
+        try{
+            product = productDao.findById(id).get();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+        return product;
+    }
+
+    @Override
+    public Product getProductByAuction(Auction auction) {
+        try{
+            Product product = productDao.findByAuction(auction);
+            return product;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

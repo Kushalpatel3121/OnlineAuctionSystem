@@ -5,4 +5,5 @@ import com.example.backend.Entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDetailsDao extends JpaRepository<UserDetails, Integer>{
+    public UserDetails findByUserEntity(UserEntity userEntity);
 }

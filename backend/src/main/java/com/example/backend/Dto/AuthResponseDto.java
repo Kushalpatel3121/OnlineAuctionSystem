@@ -1,13 +1,15 @@
 package com.example.backend.Dto;
 
+import com.example.backend.Entities.UserEntity;
 import lombok.Data;
 
 @Data
 public class AuthResponseDto {
     private String accessToken;
-    private String tokenType = "Bearer ";
+    private UserEntity userEntity;
 
-    public AuthResponseDto(String accessToken) {
-        this.accessToken = accessToken;
+    public AuthResponseDto(String accessToken, UserEntity userEntity) {
+        this.accessToken = "Bearer " + accessToken;
+        this.userEntity = userEntity;
     }
 }

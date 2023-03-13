@@ -1,5 +1,7 @@
 package com.example.backend.Helper;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,21 +17,14 @@ import java.util.Date;
 public class FileUploadHelper {
     public final String UPLOAD_DIR = "C:\\Users\\vivek\\Desktop\\OnlineAuctionSystem\\backend\\src\\main\\resources\\Static\\image\\product";
     public String fileName = null;
-    public boolean uploadFile(MultipartFile multipartFile)
+    public ResponseEntity uploadFile(MultipartFile multipartFile)
     {
         boolean f = false;
+        if(!multipartFile.getContentType().startsWith("image/"))
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please upload image file");
+        }
         try{
-
-/*
-            InputStream inputStream = multipartFile.getInputStream();
-            byte data[] = new byte[inputStream.available()];
-            inputStream.read(data);
-
-            FileOutputStream fileOutputStream = new FileOutputStream(UPLOAD_DIR + File.separator + multipartFile.getOriginalFilename() + new Date().getTime());
-            fileOutputStream.write(data);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-*/
             this.fileName = new Date().getTime() + multipartFile.getOriginalFilename();
             Files.copy(multipartFile.getInputStream(),
                     Paths.get(UPLOAD_DIR + File.separator + this.fileName),
@@ -39,6 +34,6 @@ public class FileUploadHelper {
         catch (Exception e){
             e.printStackTrace();
         }
-        return f;
+        return ResponseEntity.ok("Success");
     }
 }

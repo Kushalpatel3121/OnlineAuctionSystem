@@ -13,7 +13,6 @@ public class UserDetails {
     private String line1;
     private String line2;
     private String city;
-    private String state;
     private long pincode;
 
     @OneToOne
@@ -23,14 +22,13 @@ public class UserDetails {
     public UserDetails() {
     }
 
-    public UserDetails(String name, long mobile, String hNo, String line1, String line2, String city, String state, long pincode, UserEntity userEntity) {
+    public UserDetails(String name, long mobile, String hNo, String line1, String line2, String city, long pincode, UserEntity userEntity) {
         this.name = name;
         this.mobile = mobile;
         this.hNo = hNo;
         this.line1 = line1;
         this.line2 = line2;
         this.city = city;
-        this.state = state;
         this.pincode = pincode;
         this.userEntity = userEntity;
     }
@@ -91,13 +89,6 @@ public class UserDetails {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
 
     public long getPincode() {
         return pincode;

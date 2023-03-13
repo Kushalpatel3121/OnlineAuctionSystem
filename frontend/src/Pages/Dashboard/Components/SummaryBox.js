@@ -1,20 +1,46 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from "axios";
+import {apis} from "../../../Config/api";
 
 const SummaryBox = () => {
+    const [totalAuctions, setTotalAuctions] = useState(0);
+    const [createdAuctions, setCreatedAuction] = useState(0);
+    const [registeredAuctions, setRegisteredAuction] = useState(0);
+    const [token, setToken] = useState(localStorage.getItem("token"));
+
+    useEffect(()=>{
+        axios.get(apis.getTotalAuctions, {headers: {Authorization: token}})
+            .then((res)=>{
+                setTotalAuctions(res.data);
+            })
+            .catch((err)=>{ console.log(err); });
+
+        axios.get(apis.getTotalAuctionsOfUser, {headers: {Authorization: token}})
+            .then((res)=>{
+                setCreatedAuction(res.data);
+            })
+            .catch((err)=>{ console.log(err); });
+
+        axios.get(apis.getCountRegisteredAuctions, {headers: {Authorization:token}})
+            .then((res)=>{
+                setRegisteredAuction(res.data);
+            })
+            .catch((err)=>{ console.log(err); })
+    }, [])
   return (
     <>
         <div className='flex flex-row justify-between justify-items-center'>
             <div className='min-h-max min-w-[33%] bg-primary-dark-1/90 hover:bg-primary-dark-1 p-3 rounded-sm text-primary-white-1'>
                 <h2 className='font-bold text-lg'>Total Auctions</h2>
-                <p>499</p>
+                <p>{totalAuctions}</p>
             </div>
             <div className='min-h-max min-w-[33%] bg-primary-dark-1/90 hover:bg-primary-dark-1 p-3 rounded-sm text-primary-white-1'>
                 <h2 className='font-bold text-lg'>Registered Auctions</h2>
-                <p>34</p>
+                <p>{createdAuctions}</p>
             </div>
             <div className='min-h-max min-w-[33%] bg-primary-dark-1/90 hover:bg-primary-dark-1 p-3 rounded-sm text-primary-white-1'>
                 <h2 className='font-bold text-lg'>Auctions Registered in</h2>
-                <p>12</p>
+                <p>{registeredAuctions}</p>
             </div>
         </div>
     </>

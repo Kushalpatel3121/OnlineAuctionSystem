@@ -46,12 +46,28 @@ public class AuthController {
         this.tokenGenerator = tokenGenerator;
     }
 
+    @PostMapping("check-username")
+    public ResponseEntity checkUsername(@RequestBody LoginDto loginDto)
+    {
+        Boolean check = userServices.isUserExistByUsername(loginDto.getUsername());
+        return ResponseEntity.ok(check);
+    }
+
+    @PostMapping("check-email")
+    public ResponseEntity checkEmail(@RequestBody LoginDto loginDto)
+    {
+        Boolean check = userServices.isUserExistByEmail(loginDto.getUsername());
+        return ResponseEntity.ok(check);
+    }
+
     @PostMapping("register")
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto)
+    public ResponseEntity register(@RequestBody RegisterDto registerDto)
     {
         /*
         Checking for username or email already taken
          */
+        UserEntity userEntity = userServices.findUserByUsernameOrEmail(registerDto.getUsername(), registerDto.getEmail());
+
         if(userServices.findUserByUsernameOrEmail(registerDto.getUsername(), registerDto.getEmail()) != null)
             return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Username or Email is already taken");
 
@@ -68,7 +84,9 @@ public class AuthController {
 
         userDetailsServices.saveUserDetails(userDetails);
 
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        System.out.println(userDetails);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("login")
@@ -94,7 +112,8 @@ public class AuthController {
          */
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = tokenGenerator.generateToken(authentication);
+        UserEntity userEntity = userServices.findUserByUsernameOrEmail(loginDto.getUsername(), loginDto.getUsername());
 
-        return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthResponseDto(token, userEntity), HttpStatus.OK);
     }
 }

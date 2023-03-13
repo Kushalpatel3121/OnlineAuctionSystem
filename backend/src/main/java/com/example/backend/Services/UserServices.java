@@ -12,5 +12,8 @@ public interface UserServices {
     public UserEntity getUserById(int id);
     public List<UserEntity> getAllUser();
     public UserEntity findUserByUsernameOrEmail(String username, String email);
+    public UserEntity findUserByUsername(String username);
     public LoginDto changeUsername(LoginDto loginDto);
+    public Boolean isUserExistByUsername(String username);
+    public Boolean isUserExistByEmail(String username);
 }
