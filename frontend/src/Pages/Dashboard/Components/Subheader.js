@@ -8,15 +8,45 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimeClock } from '@mui/x-date-pickers/TimeClock';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Divider, FormHelperText, Stack } from '@mui/material';
+import { margin, minWidth } from '@mui/system';
+import Typography from '@mui/material/Typography';
+import { PhotoCamera } from '@mui/icons-material';
 
 const Subheader = () => {
   const [open, setOpen] = React.useState(false);
   const [type, setType] = React.useState('');
+  const [category, setCategory] = React.useState('');
 
-  const handleChange = (event) => {
+  //New Auction Form Details
+  const [NewAuctionDetails, setNewAuctionDetails] = React.useState({
+    AuctionName: '',
+    Type: '',
+    StartingDate: '',
+    StartingTime: '',
+    EndingDate: '',
+    EndingTime: '',
+    ProductName: '',
+    ProductDescription: '',
+    ProductCategory: '',
+    BasePrice: 0,
+    ProductAge: 0
+  });
+
+  const detailsChanged = (e) => {
+    setNewAuctionDetails(values => ({ ...values, [e.target.name]: e.target.value }))
+  }
+
+  const handleTypeChange = (event) => {
     setType(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
   };
 
   const handleClickOpen = () => {
@@ -44,39 +74,153 @@ const Subheader = () => {
                 <Dialog open={open} onClose={handleClose}>
                   <DialogTitle>New Auction</DialogTitle>
                   <DialogContent>
-                    {/* <DialogContentText>
+                    <DialogContentText>
                       Please enter the valid given details to register your new auction.
-                    </DialogContentText> */}
-                    {/* <div className='flex flex-row'> */}
-                      <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Name of the Auction"
-                        type="text"
-                        variant="standard"
-                      />
-                      {/* <FormControl > */}
-                        <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                    </DialogContentText>
+                    {/* {/* <div className='flex flex-row'> */}
+                    <Stack
+                      direction="row"
+                      spacing={2}
+                      divider={<Divider orientation='vertical' flexItem />}>
+                      <Stack direction='column' spacing={2}>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="AuctionName"
+                          label="Auction Name"
+                          type="text"
+                          variant="standard"
+                          name='AuctionName'
+                          value={NewAuctionDetails.AuctionName}
+                          onChange={detailsChanged}
+                          required
+                        />
+                        {/* <FormControl sx={{minWidth: 120}}> */}
+                        <InputLabel id="Type-Selector">Type</InputLabel>
                         <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select-label"
-                          value={type}
+                          labelId="Type-Selector"
+                          id="Select-Type"
+                          value={NewAuctionDetails.Type}
                           label="Type"
                           variant="standard"
-                          fullWidth
-                          onChange={handleChange}
+                          name='Type'
+                          onChange={detailsChanged}
+                          required
                         >
                           <MenuItem value={'Long Open Bid'}>Long Open Bid</MenuItem>
                           <MenuItem value={'Long Closed Bid'}>Long Closed Bid</MenuItem>
                           <MenuItem value={'Live Auction'}>Live Auction</MenuItem>
                         </Select>
-                      {/* </FormControl> */}
-                    {/* </div> */}
+
+                        <Typography variant='subtitle1'>Starting Date : </Typography>
+                        <DatePicker disablePast name="StartingDate" required />
+
+                        <Typography variant='subtitle1'>Starting Time : </Typography>
+                        <TimeClock name="StartingTime" required />
+
+                        {
+                          NewAuctionDetails.Type == 'Long Open Bid' || NewAuctionDetails.Type == 'Long Closed Bid' ?
+                            <>
+                              <Typography variant='subtitle1'>Ending Date : </Typography>
+                              <DatePicker disablePast name="EndingDate" required />
+
+                              <Typography variant='subtitle1'>Ending Time : </Typography>
+                              <TimeClock name="EndingTime" required />
+                            </> : 
+                            <>
+
+                            </>
+                        }
+                      </Stack>
+                      <Stack direction='column' spacing={3}>
+                        <Typography variant='h5'>Product Details : </Typography>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="ProductName"
+                          label="Product Name"
+                          name='ProductName'
+                          value={NewAuctionDetails.ProductName}
+                          fullWidth
+                          type="text"
+                          variant="standard"
+                          onChange={detailsChanged}
+                          required
+                        />
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="Description"
+                          label="Description"
+                          name='ProductDescription'
+                          value={NewAuctionDetails.ProductDescription}
+                          multiline
+                          rows={2}
+                          type="text"
+                          variant="standard"
+                          onChange={detailsChanged}
+                          required
+                        />
+
+                        <InputLabel id="Category-selector">Category</InputLabel>
+                        <Select
+                          labelId="Category-selector"
+                          id="Select-category"
+                          value={NewAuctionDetails.ProductCategory}
+                          label="Category"
+                          name='ProductCategory'
+                          variant="standard"
+                          fullWidth
+                          onChange={detailsChanged}
+                          required
+                        >
+                          <MenuItem value={'Antique'}>Antique</MenuItem>
+                          <MenuItem value={'Cars'}>Cars</MenuItem>
+                          <MenuItem value={'Real Estate'}>Real Estate</MenuItem>
+                        </Select>
+
+                        <Button variant="contained" component="label">
+                          <PhotoCamera />
+                          Upload Image
+                          <input hidden accept="image/*" multiple type="file" required />
+                        </Button>
+
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="Age"
+                          label="Product Age (in yrs)"
+                          value={NewAuctionDetails.ProductAge}
+                          name="ProductAge"
+                          fullWidth
+                          type="number"
+                          variant="standard"
+                          helperText='Enter value in decimal if age is less than an year'
+                          onChange={detailsChanged}
+                          required
+                        />
+
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="BasePrice"
+                          label="Base Price (in Rs.)"
+                          value={NewAuctionDetails.BasePrice}
+                          name="BasePrice"
+                          fullWidth
+                          type="number"
+                          variant="standard"
+                          helperText='Provide the base price'
+                          onChange={detailsChanged}
+                          required
+                        />
+
+                      </Stack>
+                    </Stack>
                   </DialogContent>
                   <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Subscribe</Button>
+                    <Button onClick={handleClose}>Submit</Button>
                   </DialogActions>
                 </Dialog>
               </ul>

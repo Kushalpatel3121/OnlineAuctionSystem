@@ -21,6 +21,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import { Tooltip } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -174,11 +175,13 @@ const Auctions = () => {
                                                     {columns.map((column) => {
                                                         const value = row[column.id];
                                                         return (
-                                                            <TableCell key={column.id} align={column.align} onClick={showAuctionDetails}>
-                                                                {column.format && typeof value === 'number'
-                                                                    ? column.format(value)
-                                                                    : value}
-                                                            </TableCell>
+                                                            <Tooltip title='Click to view more details'>
+                                                                <TableCell key={column.id} align={column.align} onClick={showAuctionDetails}>
+                                                                    {column.format && typeof value === 'number'
+                                                                        ? column.format(value)
+                                                                        : value}
+                                                                </TableCell>
+                                                            </Tooltip>
                                                         );
                                                     })}
                                                 </TableRow>
