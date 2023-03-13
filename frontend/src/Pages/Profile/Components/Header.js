@@ -1,7 +1,13 @@
 import React from 'react'
 import '../Styles/Header.css'
+import {useNavigate} from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const Logout = () => {
+    localStorage.clear();
+    navigate("../../login");
+  }
   return (
     <>
       <div className='flex flex-row bg-primary-blue text-primary-white-1 min-h-[13vh] min-w-full p-[1%] justify-between items-center'>
@@ -20,8 +26,8 @@ const Header = () => {
             </button>
             <div>
               <ul className='dropdown-menu hidden py-3 px-3 bg-primary-blue-light/90 absolute rounded-t rounded-b w-32 right-[1%] divide-y divide-solid z-10'>
-                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mb-1 rounded-sm'>My Profile</a></li>
-                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mt-1 rounded-sm'>Log Out</a></li>
+                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mb-1 rounded-sm cursor-pointer'>My Profile</a></li>
+                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mt-1 rounded-sm cursor-pointer' onClick={Logout}>Log Out</a></li>
               </ul>
             </div>
           </div>

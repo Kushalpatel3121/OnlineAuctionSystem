@@ -62,6 +62,19 @@ public class UserServiceImpl implements UserServices {
     }
 
     @Override
+    public UserEntity findUserByUsername(String username) {
+        try{
+         UserEntity userEntity = userDao.getByUsername(username);
+         return userEntity;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
     public LoginDto changeUsername(LoginDto loginDto) {
         UserEntity userEntity = userDao.findByEmail(loginDto.getUsername());
         if(userEntity != null)

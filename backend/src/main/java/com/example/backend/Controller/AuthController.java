@@ -86,7 +86,7 @@ public class AuthController {
 
         System.out.println(userDetails);
 
-        return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST        );
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("login")
@@ -112,7 +112,8 @@ public class AuthController {
          */
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = tokenGenerator.generateToken(authentication);
+        UserEntity userEntity = userServices.findUserByUsernameOrEmail(loginDto.getUsername(), loginDto.getUsername());
 
-        return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthResponseDto(token, userEntity), HttpStatus.OK);
     }
 }
