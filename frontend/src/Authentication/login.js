@@ -22,6 +22,8 @@ const Login = () => {
         axios.post(apis.login, loginInfo)
         .then( (res) => {
             localStorage.setItem("token", res.data.accessToken);
+            localStorage.setItem("user", JSON.stringify(res.data.userEntity));
+
             navigate("../dashboard");
             toast.success("Login Successful", {position: "bottom-right"});
         })

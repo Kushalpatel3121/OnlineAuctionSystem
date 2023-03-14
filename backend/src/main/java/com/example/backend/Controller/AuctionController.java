@@ -13,8 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/auction")
@@ -143,13 +142,14 @@ public class AuctionController {
     {
         List<Auction> auctions = auctionServices.getAllAuctions();
         List<AuctionResponse> auctionResponses = new ArrayList<>();
+        Collections.sort(auctions);
         for(Auction auction: auctions)
         {
             Product product = productServices.getProductByAuction(auction);
 
             String startDate = auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
 
-            String endDate =(auction.getType().equals("Live"))? "Until Auction is running" :auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
+            String endDate =(auction.getType().equals("Live Auction"))? "Until Auction is running" :auction.getEndingDate().getDate() + "/" + (auction.getEndingDate().getMonth() + 1) + "/" + (auction.getEndingDate().getYear() + 1900);
 
             AuctionResponse auctionResponse = new AuctionResponse(auction.getId(), auction.getName(), auction.getType(), product.getCategory(),startDate, endDate, product);
 
