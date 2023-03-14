@@ -14,16 +14,16 @@ const Dashboard = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
 
-  useEffect(()=>{
-    axios.get(apis.getUserDetails, { headers: { Authorization: token}})
-        .then((res)=>{
+  // useEffect(()=>{
+  //   axios.get(apis.getUserDetails, { headers: { Authorization: token}})
+  //       .then((res)=>{
 
-        })
-        .catch((err)=>{
-          navigate("../../login")
-        });
+  //       })
+  //       .catch((err)=>{
+  //         navigate("../../login")
+  //       });
 
-  }, [])
+  // }, [])
   return (
     <>
       <div>
