@@ -71,7 +71,7 @@ const Subheader = () => {
               <ul className='dropdown-menu hidden py-3 px-3 bg-primary-white-1/90 absolute rounded-t rounded-b min-w-max left-[2.5%] divide-y divide-solid'>
                 {/* <li className='hover:bg-secondary-sup-gray-4 whitespace-no-wrap block py-1 px-1 mb-1 rounded-sm'>Register</li> */}
                 <li className='hover:bg-primary-dark-1 hover:text-primary-white-1 cursor-pointer whitespace-no-wrap block py-1 px-1 mt-1 rounded-sm' onClick={handleClickOpen}>New Auction</li>
-                <Dialog open={open} onClose={handleClose}>
+                <Dialog open={open} onClose={handleClose} maxWidth={'lg'}>
                   <DialogTitle>New Auction</DialogTitle>
                   <DialogContent>
                     <DialogContentText>
@@ -92,6 +92,7 @@ const Subheader = () => {
                           variant="standard"
                           name='AuctionName'
                           value={NewAuctionDetails.AuctionName}
+                          fullWidth
                           onChange={detailsChanged}
                           required
                         />
@@ -104,6 +105,7 @@ const Subheader = () => {
                           label="Type"
                           variant="standard"
                           name='Type'
+                          fullWidth
                           onChange={detailsChanged}
                           required
                         >
