@@ -30,7 +30,6 @@ const Signup = () => {
         "cpassword":"",
         "name":"",
         "mobile":"",
-        "email":"",
         "hNo":"",
         "line1":"",
         "line2":"",

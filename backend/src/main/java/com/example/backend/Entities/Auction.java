@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Auction {
+public class Auction implements Comparable<Auction>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -32,6 +32,11 @@ public class Auction {
         this.isCompleted = isCompleted;
     }
 
+    @Override
+    public int compareTo(Auction auction)
+    {
+        return (int)(this.startingDate.getTime() - auction.startingDate.getTime());
+    }
     public Boolean getCompleted() {
         return isCompleted;
     }
