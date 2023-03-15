@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, {useContext, useEffect, useState} from 'react'
+=======
+import React, { useEffect, useState } from 'react'
+>>>>>>> main
 import '../Styles/Auctions.css'
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -15,16 +19,22 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
+import ImageListItem from '@mui/material/ImageListItem';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import { Tooltip } from '@mui/material';
+import { Image } from 'mui-image'
+import { Box, Stack, Tooltip } from '@mui/material';
 import axios from "axios";
+<<<<<<< HEAD
 import {apis} from "../../../Config/api";
 import {AuctionContext} from "../../../Context/Context";
+=======
+import { apis } from "../../../Config/api";
+>>>>>>> main
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -53,25 +63,45 @@ const columns = [
     },
 ];
 
-function createData(name, type, category, startdate, endingdate) {
-    return { name, type, category, startdate, endingdate };
+function createData(name, type, category, startingDate, endingDate) {
+    return { name, type, category, startingDate, endingDate };
 }
 
 
 
 const Auctions = () => {
+<<<<<<< HEAD
     const {rows, setRows, change, setChange, loadAllAuctions, submit, setSubmit} = useContext(AuctionContext);
+=======
+    const [rows, setRows] = useState([createData('asdfcasdf', 'Long', 'Cars', '23/06/2023', '12/07/2023')]);
+
+>>>>>>> main
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [open, setOpen] = useState(false);
     const [token, setToken] = useState(localStorage.getItem("token"));
 
+<<<<<<< HEAD
 
 
 
     useEffect(() => {
             loadAllAuctions();
     }, [submit]);
+=======
+    let loadAllAuctions = async () => {
+        await axios.get(apis.getAllAuctions, { headers: { Authorization: token } })
+            .then((res) => {
+                setRows(res.data);
+            })
+            .catch((err) => { });
+    }
+
+
+    // useEffect(() => {
+    //         loadAllAuctions();
+    // }, []);
+>>>>>>> main
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -99,8 +129,14 @@ const Auctions = () => {
                     onClose={handleClose}
                     TransitionComponent={Transition}
                 >
-                    <AppBar sx={{ position: 'relative' }}>
+                    <AppBar sx={{ position: 'relative', bgcolor: '#004d91' }}>
                         <Toolbar>
+                            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                                Auction Id : 2321143
+                            </Typography>
+                            {/* <Button autoFocus color="inherit" onClick={handleClose}>
+                                save
+                            </Button> */}
                             <IconButton
                                 edge="start"
                                 color="inherit"
@@ -109,15 +145,9 @@ const Auctions = () => {
                             >
                                 <CloseIcon />
                             </IconButton>
-                            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                                Sound
-                            </Typography>
-                            <Button autoFocus color="inherit" onClick={handleClose}>
-                                save
-                            </Button>
                         </Toolbar>
                     </AppBar>
-                    <List>
+                    {/* <List>
                         <ListItem button>
                             <ListItemText primary="Phone ringtone" secondary="Titania" />
                         </ListItem>
@@ -128,7 +158,62 @@ const Auctions = () => {
                                 secondary="Tethys"
                             />
                         </ListItem>
-                    </List>
+                    </List> */}
+                    {/* <Stack direction='row' spacing={4} sx={{ marginX: 3, marginY: 3 }} divider={<Divider orientation='vertical' flexItem />}>
+                        <Stack direction='column' divider={<Divider orientation='horizontal' flexItem />} spacing={3} sx={{width:500}}>
+                            <Typography variant='h5' fontWeight='bold' gutterBottom>Product Details</Typography>
+                            <Stack direction='row' divider={<Divider orientation='vertical' flexItem />} spacing={1}>
+                                <Image src='/images/arrow.png' height={400} width={300}></Image>
+                                <Stack direction='column' divider={<Divider orientation='horizontal' flexItem />} spacing={1}>
+                                    <div>
+                                        <Typography variant='h6' fontWeight={'bold'}>Name : </Typography>
+                                        <Typography variant='subtitle1' gutterBottom>Maruti Suzuki</Typography>
+                                    </div>
+                                    <div>
+                                        <Typography variant='h6' fontWeight={'bold'}>Description : </Typography>
+                                        <Typography variant='subtitle1' gutterBottom sx={{overflow:'scroll'}}>Swift Dzire asfasdgsdafbzdxvfsdahsfvdadfbsdgfvdsav xz ZVdfasfasdfasdvgsdfhgbdafb zcx vasdgsdav ZXCbdsafvg</Typography>
+                                    </div>
+                                    <div>
+                                        <Typography variant='h6' fontWeight={'bold'}>Category : </Typography>
+                                        <Typography variant='subtitle1' gutterBottom>Cars</Typography>
+                                    </div>
+                                    <div>
+                                        <Typography variant='h6' fontWeight={'bold'}>Age : </Typography>
+                                        <Typography variant='subtitle1' gutterBottom>4 yrs</Typography>
+                                    </div>
+                                    <div>
+                                        <Typography variant='h6' fontWeight={'bold'}>Base Price : </Typography>
+                                        <Typography variant='subtitle1' gutterBottom>370000</Typography>
+                                    </div>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                        <Stack direction='column' divider={<Divider orientation='horizontal' flexItem />} spacing={3} sx={{minWidth:400}}>
+                            <Typography variant='h5' fontWeight='bold'>Auction Details</Typography>
+                                <div className='hover:bg-secondary-sup-gray-1'>
+                                    <Typography variant='h6' fontWeight={'bold'}>Name : </Typography>
+                                    <Typography variant='subtitle1' gutterBottom>abcsafdsv</Typography>
+                                </div>
+                                {/* <Divider orientation='horizontal'/> */}
+                    {/* <div>
+                                    <Typography variant='h6' fontWeight={'bold'}>Name : </Typography>
+                                    <Typography variant='subtitle1' gutterBottom>abcsafdsv</Typography>
+                                </div> */}
+                    {/* </Stack>
+                    </Stack> */}
+                    <div className='m-3'>
+                        <div className='flex flex-row'>
+                            <div className='bg-primary-yellow-1 basis-2/5'>
+                                Hii
+                            </div>
+                            <div className='bg-primary-gray-1 basis-2/5'>
+                                Hii
+                            </div>
+                            <div className='basis-2/8 bg-secondary-sup-gray-1 basis-1/5'>
+                                Hii
+                            </div>
+                        </div>
+                    </div>
                 </Dialog>
             </div>
             <div className='z-0'>

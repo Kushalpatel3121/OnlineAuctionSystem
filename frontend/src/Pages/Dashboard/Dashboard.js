@@ -26,14 +26,25 @@ const Dashboard = () => {
   }
 
 
+<<<<<<< HEAD
   useEffect(()=>{
     axios.get(apis.getUserDetails, { headers: { Authorization: token}})
         .then((res)=>{})
         .catch((err)=>{
           navigate("../../login")
         });
+=======
+  // useEffect(()=>{
+  //   axios.get(apis.getUserDetails, { headers: { Authorization: token}})
+  //       .then((res)=>{
 
-  }, [])
+  //       })
+  //       .catch((err)=>{
+  //         navigate("../../login")
+  //       });
+>>>>>>> main
+
+  // }, [])
   return (
       <AuctionContext.Provider value={{rows, setRows, loadAllAuctions, submit, setSubmit}}>
         <>

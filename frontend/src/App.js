@@ -5,8 +5,6 @@ import ProfilePage from './Pages/Profile/Profile';
 import Home from './Pages/Home/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-
 function App() {
 
 
