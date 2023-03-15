@@ -28,6 +28,8 @@ public class AuctionController {
     @Autowired
     private BiddingService biddingService;
     @Autowired
+    private UpdateServices updateServices;
+    @Autowired
     private UserAuctionMappingServices userAuctionMappingServices;
     @Autowired
     private FileUploadHelper fileUploadHelper;
@@ -73,6 +75,11 @@ public class AuctionController {
         bidding.setUserEntity(userEntity);
         biddingService.saveBidding(bidding);
 
+        String title = "New Auction Released";
+        String des = auction.getType() + " has been created by " + userEntity.getUsername();
+        Updates updates = new Updates(title, des, new Date());
+        updateServices.addUpdate(updates);
+        
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 

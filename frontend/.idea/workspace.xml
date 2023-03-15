@@ -5,11 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3022cf16-6443-420b-8ead-11a4c0ab183c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dto/UpdatesDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Entities/Updates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UpdateServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UpdateServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Context/Context.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Helper/FileUploadHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Helper/FileUploadHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1676984450149got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1676985069473got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1676985168199got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1676985200460got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1676985317203got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1676985354102got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1676995594138got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1677049117578got.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1677615980340Screenshot 2023-02-26 123457.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1678038944858Screenshot 2023-02-26 123457.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1678649270344Screenshot 2023-02-26 123416.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1678790032614Screenshot 2023-02-26 123457.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1678791888565Screenshot 2023-02-26 123508.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/Static/image/product/1678793923483Screenshot 2023-02-26 123519.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Authentication/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authentication/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Authentication/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authentication/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Config/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Subheader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Subheader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/SummaryBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/SummaryBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +66,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vivek\Desktop\OnlineAuctionSystem\frontend\public\images" />
       <recent name="C:\Users\vivek\Desktop\OnlineAuctionSystem\frontend\src" />
     </key>
   </component>
@@ -77,7 +99,9 @@
       <workItem from="1678631115396" duration="14935000" />
       <workItem from="1678722164495" duration="1211000" />
       <workItem from="1678733972492" duration="4505000" />
-      <workItem from="1678781877987" duration="11858000" />
+      <workItem from="1678781877987" duration="12178000" />
+      <workItem from="1678802216535" duration="8567000" />
+      <workItem from="1678861836631" duration="2698000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -16,9 +16,11 @@ import { PhotoCamera } from '@mui/icons-material';
 import axios from "axios";
 import {apis} from "../../../Config/api";
 import {toast, ToastContainer} from "react-toastify";
+import {AuctionContext} from "../../../Context/Context";
 
 const Subheader = () => {
   const [open, setOpen] = React.useState(false);
+  const { loadAllAuctions, submit, setSubmit} = useContext(AuctionContext);
 
   //Token and user data
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -146,11 +148,18 @@ const Subheader = () => {
             }})
           .then((res) => {
             toast.success("Auction created successfully", {position: "bottom-right"});
+            if(submit == false)
+            setSubmit(true);
+            else
+              setSubmit(false);
           })
           .catch((err) => { toast.error("Some error while creating auction", {position: "bottom-right"})});
-
       setOpen(false);
+
+
+
     }
+
   };
 
   const handleCancel = () => {

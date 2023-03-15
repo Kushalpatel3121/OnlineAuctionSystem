@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import '../Styles/Auctions.css'
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -24,6 +24,7 @@ import Slide from '@mui/material/Slide';
 import { Tooltip } from '@mui/material';
 import axios from "axios";
 import {apis} from "../../../Config/api";
+import {AuctionContext} from "../../../Context/Context";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -59,25 +60,18 @@ function createData(name, type, category, startdate, endingdate) {
 
 
 const Auctions = () => {
-    const [rows, setRows] = useState([]);
-
+    const {rows, setRows, change, setChange, loadAllAuctions, submit, setSubmit} = useContext(AuctionContext);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [open, setOpen] = useState(false);
     const [token, setToken] = useState(localStorage.getItem("token"));
 
-    let loadAllAuctions = async () => {
-        await axios.get(apis.getAllAuctions, {headers:{Authorization: token}})
-            .then((res) => {
-                setRows(res.data);
-            })
-            .catch((err) => {});
-    }
+
 
 
     useEffect(() => {
             loadAllAuctions();
-    }, []);
+    }, [submit]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
