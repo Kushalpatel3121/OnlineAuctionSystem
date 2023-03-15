@@ -13,40 +13,25 @@ import {AuctionContext} from "../../Context/Context";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [rows, setRows] = useState([]);
+
   const [submit, setSubmit] = useState(false);
 
 
-  let loadAllAuctions = () => {
-    axios.get(apis.getAllAuctions, {headers:{Authorization: token}})
+
+
+
+
+  useEffect(()=> {
+    axios.get(apis.getUserDetails, {headers: {Authorization: token}})
         .then((res) => {
-          setRows(res.data);
         })
-        .catch((err) => {});
-  }
-
-
-<<<<<<< HEAD
-  useEffect(()=>{
-    axios.get(apis.getUserDetails, { headers: { Authorization: token}})
-        .then((res)=>{})
-        .catch((err)=>{
+        .catch((err) => {
           navigate("../../login")
         });
-=======
-  // useEffect(()=>{
-  //   axios.get(apis.getUserDetails, { headers: { Authorization: token}})
-  //       .then((res)=>{
+  }, []);
 
-  //       })
-  //       .catch((err)=>{
-  //         navigate("../../login")
-  //       });
->>>>>>> main
-
-  // }, [])
   return (
-      <AuctionContext.Provider value={{rows, setRows, loadAllAuctions, submit, setSubmit}}>
+      <AuctionContext.Provider value={{ submit, setSubmit}}>
         <>
           <div>
             <header className=''>
@@ -77,4 +62,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Dashboard;

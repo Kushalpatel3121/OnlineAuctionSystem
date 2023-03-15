@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -156,14 +155,26 @@ const Subheader = () => {
           })
           .catch((err) => { toast.error("Some error while creating auction", {position: "bottom-right"})});
       setOpen(false);
-
-
-
     }
 
   };
 
   const handleCancel = () => {
+    setNewAuctionError({
+      auctionName: '',
+      auctionType: '',
+      auctionStartingDate: '',
+      auctionStartingTime: '',
+      auctionEndingDate: '',
+      auctionEndingTime: '',
+      productName: '',
+      productDescription: '',
+      productCategory: '',
+      otherCategory: '',
+      productBasePrice: '',
+      productAge: '',
+      productImage:''
+    });
     setOpen(false);
   }
 

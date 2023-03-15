@@ -15,4 +15,5 @@ export const apis = {
     getAllAuctions:`${baseUrl}/auction/get-all`,
     getCountRegisteredAuctions: `${baseUrl}/auction/get-all-registered`,
     createAuction: `${baseUrl}/auction/create-auction`,
+    getAllUpdates: `${baseUrl}/updates/get-all-update`
 }

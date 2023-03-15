@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, {useContext, useEffect, useState} from 'react'
-=======
-import React, { useEffect, useState } from 'react'
->>>>>>> main
 import '../Styles/Auctions.css'
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -29,12 +25,9 @@ import Slide from '@mui/material/Slide';
 import { Image } from 'mui-image'
 import { Box, Stack, Tooltip } from '@mui/material';
 import axios from "axios";
-<<<<<<< HEAD
-import {apis} from "../../../Config/api";
 import {AuctionContext} from "../../../Context/Context";
-=======
 import { apis } from "../../../Config/api";
->>>>>>> main
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -70,38 +63,29 @@ function createData(name, type, category, startingDate, endingDate) {
 
 
 const Auctions = () => {
-<<<<<<< HEAD
-    const {rows, setRows, change, setChange, loadAllAuctions, submit, setSubmit} = useContext(AuctionContext);
-=======
-    const [rows, setRows] = useState([createData('asdfcasdf', 'Long', 'Cars', '23/06/2023', '12/07/2023')]);
 
->>>>>>> main
+    const { change, setChange, submit, setSubmit} = useContext(AuctionContext);
+
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [open, setOpen] = useState(false);
     const [token, setToken] = useState(localStorage.getItem("token"));
+    const [rows, setRows] = useState([]);
 
-<<<<<<< HEAD
+    let loadAllAuctions = () => {
+        axios.get(apis.getAllAuctions, {headers:{Authorization: token}})
+            .then((res) => {
+                setRows(res.data);
+            })
+            .catch((err) => {});
+    }
 
 
 
     useEffect(() => {
             loadAllAuctions();
     }, [submit]);
-=======
-    let loadAllAuctions = async () => {
-        await axios.get(apis.getAllAuctions, { headers: { Authorization: token } })
-            .then((res) => {
-                setRows(res.data);
-            })
-            .catch((err) => { });
-    }
 
-
-    // useEffect(() => {
-    //         loadAllAuctions();
-    // }, []);
->>>>>>> main
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -113,6 +97,7 @@ const Auctions = () => {
     };
 
     const showAuctionDetails = () => {
+
         setOpen(true);
     };
 

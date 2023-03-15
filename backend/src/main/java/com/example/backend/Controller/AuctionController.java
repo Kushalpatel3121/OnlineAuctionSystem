@@ -112,6 +112,7 @@ public class AuctionController {
         userAuctionMappingServices.saveUserAuctionMapping(userAuctionMapping);
         auctionServices.incrementRegistration(auction);
 
+
         return ResponseEntity.ok("Registration successful");
     }
 
