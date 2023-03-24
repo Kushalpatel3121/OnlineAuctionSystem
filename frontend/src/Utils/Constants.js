@@ -1,0 +1,1 @@
+export const UTCToGMT = (5 * 60 * 60 + 30 * 60) * 1000;

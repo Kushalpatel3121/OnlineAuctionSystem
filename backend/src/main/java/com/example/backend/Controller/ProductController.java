@@ -14,11 +14,18 @@ public class ProductController {
     @Autowired
     private ProductServices productServices;
 
-    @GetMapping("get-product/{id}")
+    @GetMapping("get-by-id/{id}")
     public ResponseEntity getProduct(@PathVariable int id)
     {
         Product product = productServices.getProductById(id);
         return new ResponseEntity(product, HttpStatus.OK);
+    }
+
+    @GetMapping("get-by-auction-id/{auctionId}")
+    public ResponseEntity getProductByAuctionId(@PathVariable int auctionId)
+    {
+        Product product = productServices.getProductByAuctionId(auctionId);
+        return ResponseEntity.ok(product);
     }
 
 

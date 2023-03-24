@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/bidding")
@@ -16,10 +18,10 @@ public class BiddingController {
     @Autowired
     private BiddingService biddingService;
 
-    @GetMapping("/live/{productId}")
+    @GetMapping("/get-initial/{productId}")
     public ResponseEntity getInitialBid(@PathVariable int productId)
     {
-        Bidding bidding = biddingService.getByProductId(productId);
+        List<Bidding> bidding = biddingService.getByProductId(productId);
         return ResponseEntity.ok(bidding);
     }
 

@@ -2,7 +2,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { apis } from "../Config/api";
+import { apis } from "../Utils/api";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 

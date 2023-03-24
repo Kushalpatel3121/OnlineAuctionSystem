@@ -4,10 +4,10 @@ import Sidebar from './Components/Sidebar';
 import Subheader from './Components/Subheader';
 import Updates from './Components/Updates';
 import SummaryBox from './Components/SummaryBox';
-import Auctions from './Components/Auctions';
+import Auctions from './Components/Auction/Auctions';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {apis} from "../../Config/api";
+import {apis} from "../../Utils/api";
 import {AuctionContext} from "../../Context/Context";
 
 const Dashboard = () => {

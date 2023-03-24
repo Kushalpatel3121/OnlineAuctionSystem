@@ -10,6 +10,8 @@ import com.example.backend.Services.BiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BiddingServiceImpl implements BiddingService {
     @Autowired
@@ -57,17 +59,16 @@ public class BiddingServiceImpl implements BiddingService {
     }
 
     @Override
-    public Bidding getByProductId(int productId) {
-        Bidding bidding;
+    public List<Bidding> getByProductId(int productId) {
         try{
             Product product = productDao.findById(productId).get();
-            bidding = biddingDao.getByProduct(product);
+            List<Bidding> biddings = biddingDao.findAllByProduct(product);
+            return biddings;
         }
         catch (Exception e)
         {
             e.printStackTrace();
             throw e;
         }
-        return bidding;
     }
 }

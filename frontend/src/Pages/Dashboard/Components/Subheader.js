@@ -10,11 +10,11 @@ import MenuItem from '@mui/material/MenuItem';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimeClock } from '@mui/x-date-pickers/TimeClock';
 import Select from '@mui/material/Select';
-import { Divider, FormHelperText, Stack } from '@mui/material';
+import {DialogContentText, Divider, FormHelperText, Stack} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { PhotoCamera } from '@mui/icons-material';
 import axios from "axios";
-import {apis} from "../../../Config/api";
+import {apis} from "../../../Utils/api";
 import {toast, ToastContainer} from "react-toastify";
 import {AuctionContext} from "../../../Context/Context";
 
@@ -237,9 +237,10 @@ const Subheader = () => {
                             const mins = (value.$d.getMinutes() > 9) ? `${value.$d.getMinutes()}` : `0${value.$d.getMinutes()}`;
                             const secs = (value.$d.getSeconds() > 9) ? `${value.$d.getSeconds()}` : `0${value.$d.getSeconds()}`;
                             const startTime = hours + ":" + mins + ":" + secs;
+
                             setNewAuctionDetails(values => ({ ...values, auctionStartingTime: startTime }));
                           }}
-                          required />
+                          required ampm={false}/>
                         <span style={{ color: "red", fontSize: "12px" }}>{NewAuctionError.auctionStartingTime}</span>
 
                         {
@@ -266,7 +267,7 @@ const Subheader = () => {
                                   const endTime = hours + ":" + mins + ":" + secs;
                                   setNewAuctionDetails(values => ({ ...values, auctionEndingTime: endTime }));
                                 }}
-                                required />
+                                required ampm={false}/>
                               <span style={{ color: "red", fontSize: "12px" }}>{NewAuctionError.auctionEndingTime}</span>
                             </> :
                             <>

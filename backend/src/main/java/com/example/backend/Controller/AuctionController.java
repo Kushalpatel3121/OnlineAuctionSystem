@@ -174,8 +174,10 @@ public class AuctionController {
         return ResponseEntity.ok(products.size());
     }
 
-
-
-
-
+    @RequestMapping("get-by-id/{auctionId}")
+    public ResponseEntity getAuctionById(@PathVariable int auctionId)
+    {
+        Auction auction = auctionServices.getAuctionById(auctionId);
+        return ResponseEntity.ok(auction);
+    }
 }

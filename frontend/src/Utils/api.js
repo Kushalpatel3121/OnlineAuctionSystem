@@ -15,5 +15,10 @@ export const apis = {
     getAllAuctions:`${baseUrl}/auction/get-all`,
     getCountRegisteredAuctions: `${baseUrl}/auction/get-all-registered`,
     createAuction: `${baseUrl}/auction/create-auction`,
-    getAllUpdates: `${baseUrl}/updates/get-all-update`
+    getAuctionById: `${baseUrl}/auction/get-by-id`,
+    checkUserRegistration: `${baseUrl}/auction/check-reg`,
+    userRegistration: `${baseUrl}/auction/register-user`,
+    getAllUpdates: `${baseUrl}/updates/get-all-update`,
+    getProductByAuctionId: `${baseUrl}/product/get-by-auction-id`,
+    getCurrentBidIntially: `${baseUrl}/bidding/get-initial`,
 }

@@ -35,8 +35,11 @@ public class SocketController {
     @SendTo("/topic/return-to/{auctionId}/{productId}")
     public ResponseEntity bid(@DestinationVariable int auctionId, @DestinationVariable int productId,
                               @RequestBody Bidding bidding) throws JsonProcessingException {
-//        biddingService.updateBid(bidding);
-//        System.out.println(bidding);
-        return ResponseEntity.ok(bidding);
+        Bidding newBid = new Bidding();
+        newBid.setCurrentBid(bidding.getCurrentBid());
+        newBid.setProduct(bidding.getProduct());
+        newBid.setUserEntity(bidding.getUserEntity());
+        biddingService.saveBidding(newBid);
+        return ResponseEntity.ok(newBid);
     }
 }

@@ -5,9 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3022cf16-6443-420b-8ead-11a4c0ab183c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/AuctionDetails.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LiveAuction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/ProductDetails.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Timer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/Constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/CountDownTimerUtil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/SocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/SocketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/ProductServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/ProductServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auctions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Authentication/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authentication/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Authentication/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authentication/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Auctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Subheader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Subheader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/SummaryBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/SummaryBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Updates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Updates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Profile/Components/Personalinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Profile/Components/Personalinfo.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,21 +48,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vivek\Desktop\OnlineAuctionSystem\frontend\src\Pages\Dashboard\Components\Auction" />
       <recent name="C:\Users\vivek\Desktop\OnlineAuctionSystem\frontend\public\images" />
       <recent name="C:\Users\vivek\Desktop\OnlineAuctionSystem\frontend\src" />
     </key>
@@ -80,7 +102,12 @@
       <workItem from="1678802216535" duration="8567000" />
       <workItem from="1678861836631" duration="3110000" />
       <workItem from="1678867448606" duration="1796000" />
-      <workItem from="1678893087386" duration="5301000" />
+      <workItem from="1678893087386" duration="14787000" />
+      <workItem from="1678944339688" duration="2001000" />
+      <workItem from="1678948195182" duration="4574000" />
+      <workItem from="1678956107253" duration="5692000" />
+      <workItem from="1678979027963" duration="13908000" />
+      <workItem from="1679041193089" duration="5553000" />
     </task>
     <servers />
   </component>

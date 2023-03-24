@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import axios from "axios";
-import {apis} from "../../../Config/api";
+import {apis} from "../../../Utils/api";
 import {AuctionContext} from "../../../Context/Context";
 
 const SummaryBox = () => {

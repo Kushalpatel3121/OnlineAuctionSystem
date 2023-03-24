@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {apis} from "../../../Config/api";
+import {apis} from "../../../Utils/api";
 
 
 const Personalinfo = () => {
@@ -11,7 +11,8 @@ const Personalinfo = () => {
   useEffect(()=> {
     axios.get(apis.getUserDetails, { headers: { Authorization: localStorage.getItem("token")}})
         .then((res)=>{
-          // console.log(res.data);
+          console.log(res.data);
+
           setDetails(res.data);
         })
         .catch((err)=>{
