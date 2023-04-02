@@ -30,6 +30,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Draggable from 'react-draggable';
 import LiveAuction from "./Components/LiveAuction";
+import CloseBid from "./Components/CloseBid";
+import LongOpenBid from "./Components/LongOpenBid";
 
 function PaperComponent(props) {
     return (
@@ -85,6 +87,7 @@ const Auctions = () => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("user")));
     const [rows, setRows] = useState([]);
+    const [completedRows, setCompletedRows] = useState([]);
     const [product, setProduct] = useState(null);
     const [countDownTs, setCountDownTs] = useState(0);
     const [isAuctionCompleted, setIsAuctionCompleted] = useState(false);
@@ -95,6 +98,13 @@ const Auctions = () => {
         axios.get(apis.getAllAuctions, {headers:{Authorization: token}})
             .then((res) => {
                 setRows(res.data);
+
+            })
+            .catch((err) => {});
+
+        axios.get(apis.getAllCompletedAuction, {headers:{Authorization: token}})
+            .then((res) => {
+                setCompletedRows(res.data);
 
             })
             .catch((err) => {});
@@ -277,8 +287,13 @@ const Auctions = () => {
                                                 </div>
                                             </>
                                             :
-
+                                            (product.auction.type == 'Live Auction') ?
                                             <LiveAuction product={product} />
+                                                :
+                                                (product.auction.type == 'Long Closed Bid') ?
+                                                    <CloseBid product={product} />
+                                                    :
+                                                    <LongOpenBid product={product} />
                                     }
 
                                 </div>
@@ -347,6 +362,68 @@ const Auctions = () => {
                     </Paper>
                 </div>
             </div>
+
+
+            <div className='z-0 mt-5'>
+                <div className='font-bold text-2xl'>
+                    <h1>All Completed Auctions</h1>
+                    <hr className='mb-2'></hr>
+                </div>
+                <div>
+                    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                        <TableContainer sx={{ maxHeight: 440 }}>
+                            <Table aria-label="sticky table">
+                                <TableHead >
+                                    <TableRow>
+                                        {columns.map((column) => (
+                                            <TableCell
+                                                key={column.id}
+                                                align={column.align}
+                                                style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
+                                            >
+                                                {column.label}
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {completedRows
+                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        .map((row, index) => {
+
+                                            return (
+                                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => { showAuctionDetails(row.id)}}>
+                                                    {columns.map((column) => {
+                                                        const value = row[column.id];
+                                                        return (
+                                                            <Tooltip title='Click to view more details'>
+                                                                <TableCell key={column.id} align={column.align} >
+                                                                    {column.format && typeof value === 'number'
+                                                                        ? column.format(value)
+                                                                        : value}
+                                                                </TableCell>
+                                                            </Tooltip>
+                                                        );
+                                                    })}
+                                                </TableRow>
+                                            );
+                                        })}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <TablePagination
+                            rowsPerPageOptions={[10, 25, 100]}
+                            component="div"
+                            count={rows.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                    </Paper>
+                </div>
+            </div>
+
             <ToastContainer />
         </>
     )

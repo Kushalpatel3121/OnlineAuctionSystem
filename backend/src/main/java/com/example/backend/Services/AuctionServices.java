@@ -12,4 +12,5 @@ public interface AuctionServices {
     public Auction incrementRegistration(Auction auction);
     public List<Auction> getAllAuctions();
     public List<Auction> getAllOfUser(UserEntity userEntity);
+    public List<Auction> getAllCompletedAuctions();
 }

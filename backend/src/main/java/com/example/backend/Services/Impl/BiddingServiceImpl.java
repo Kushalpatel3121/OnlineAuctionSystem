@@ -10,6 +10,8 @@ import com.example.backend.Services.BiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -63,6 +65,7 @@ public class BiddingServiceImpl implements BiddingService {
         try{
             Product product = productDao.findById(productId).get();
             List<Bidding> biddings = biddingDao.findAllByProduct(product);
+            Collections.reverse(biddings);
             return biddings;
         }
         catch (Exception e)

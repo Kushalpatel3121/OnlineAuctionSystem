@@ -13,7 +13,7 @@ import {AuctionContext} from "../../Context/Context";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token"));
-
+  const [timeComplete, setTimeComplete] = useState(false);
   const [submit, setSubmit] = useState(false);
 
 
@@ -31,7 +31,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-      <AuctionContext.Provider value={{ submit, setSubmit}}>
+      <AuctionContext.Provider value={{ submit, setSubmit, timeComplete, setTimeComplete}}>
         <>
           <div>
             <header className=''>

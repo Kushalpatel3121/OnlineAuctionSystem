@@ -133,8 +133,12 @@ public class AuctionController {
     @GetMapping("/get-numbers")
     public ResponseEntity totalNumberOfAuctions()
     {
+        int count = 0;
         List<Auction> auctions = auctionServices.getAllAuctions();
-        return ResponseEntity.ok(auctions.size());
+        count += auctions.size();
+        auctions = auctionServices.getAllCompletedAuctions();
+        count += auctions.size();
+        return ResponseEntity.ok(count);
     }
 
     @GetMapping("/get-numbers-user")
@@ -166,6 +170,27 @@ public class AuctionController {
         return ResponseEntity.ok(auctionResponses);
     }
 
+    @GetMapping("/get-all-completed")
+    public ResponseEntity getAllCompletedAuctions()
+    {
+        List<Auction> auctions = auctionServices.getAllCompletedAuctions();
+        List<AuctionResponse> auctionResponses = new ArrayList<>();
+        Collections.sort(auctions);
+        for(Auction auction: auctions)
+        {
+            Product product = productServices.getProductByAuction(auction);
+
+            String startDate = auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
+
+            String endDate =(auction.getType().equals("Live Auction"))? "Until Auction is running" :auction.getEndingDate().getDate() + "/" + (auction.getEndingDate().getMonth() + 1) + "/" + (auction.getEndingDate().getYear() + 1900);
+
+            AuctionResponse auctionResponse = new AuctionResponse(auction.getId(), auction.getName(), auction.getType(), product.getCategory(),startDate, endDate, product);
+
+            auctionResponses.add(auctionResponse);
+        }
+        return ResponseEntity.ok(auctionResponses);
+    }
+
     @GetMapping("/get-all-registered")
     public ResponseEntity getTotalRegisteredAuction(@RequestHeader("Authorization") String token)
     {
@@ -178,6 +203,15 @@ public class AuctionController {
     public ResponseEntity getAuctionById(@PathVariable int auctionId)
     {
         Auction auction = auctionServices.getAuctionById(auctionId);
+        return ResponseEntity.ok(auction);
+    }
+
+    @GetMapping("change-status/{auctionId}")
+    public ResponseEntity changeStatus(@PathVariable int auctionId)
+    {
+        Auction auction = auctionServices.getAuctionById(auctionId);
+        auction.setCompleted(true);
+        auctionServices.saveAuction(auction);
         return ResponseEntity.ok(auction);
     }
 }

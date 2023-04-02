@@ -7,9 +7,9 @@ public class CloseBid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    private int bidAmount;
     @ManyToOne
-    private Auction auction;
+    private Product product;
 
     @ManyToOne
     private UserEntity userEntity;
@@ -17,10 +17,19 @@ public class CloseBid {
     public CloseBid() {
     }
 
-    public CloseBid(int id, Auction auction, UserEntity userEntity) {
+    public CloseBid(int id, int bidAmount, Product product, UserEntity userEntity) {
         this.id = id;
-        this.auction = auction;
+        this.bidAmount = bidAmount;
+        this.product = product;
         this.userEntity = userEntity;
+    }
+
+    public int getBidAmount() {
+        return bidAmount;
+    }
+
+    public void setBidAmount(int bidAmount) {
+        this.bidAmount = bidAmount;
     }
 
     public int getId() {
@@ -31,12 +40,12 @@ public class CloseBid {
         this.id = id;
     }
 
-    public Auction getAuction() {
-        return auction;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setAuction(Auction auction) {
-        this.auction = auction;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public UserEntity getUserEntity() {
@@ -46,12 +55,12 @@ public class CloseBid {
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
-
     @Override
     public String toString() {
         return "CloseBid{" +
                 "id=" + id +
-                ", auction=" + auction +
+                ", bidAmount=" + bidAmount +
+                ", product=" + product +
                 ", userEntity=" + userEntity +
                 '}';
     }

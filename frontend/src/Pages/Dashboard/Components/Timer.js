@@ -4,29 +4,44 @@ import {AuctionContext} from "../../../Context/Context";
 
 
 const defaultRemaining = {
-    days: '00',
+    days: '0',
     hours: '00',
-    minutes: '00',
+    minutes: '01',
     seconds: '00'
 }
+
+const ending = {
+    "seconds": 'NaN',
+    "minutes": 'NaN',
+    "hours": 'NaN',
+    "days": 'NaN'
+}
+
 const Timer = ({countDownTs}) => {
     const [remainingTime, setRemainingTime] = useState(defaultRemaining);
-    const {submit, setSubmit} = useContext(AuctionContext);
-
+    const {timeComplete, setTimeComplete} = useContext(AuctionContext);
+    let [check, setCheck] = useState(false);
     function updateRemainingTime(countDown) {
         setRemainingTime(getRemainingTimeUntilMsTs(countDown));
-        if(remainingTime == defaultRemaining)
+        // console.log(getRemainingTimeUntilMsTs(remainingTime))
+
+        if(JSON.stringify(getRemainingTimeUntilMsTs(remainingTime)) ===  JSON.stringify(ending) && check == false)
         {
-            // window.location.reload();
+            setCheck(true);
+
+            if(timeComplete == false)
+                setTimeComplete(true);
+            else
+                setTimeComplete(false);
         }
     }
 
     useEffect(()=> {
-        const intervalId = setInterval(() => {
-            updateRemainingTime(countDownTs);
-        }, 1000);
+            const intervalId = setInterval(() => {
+                updateRemainingTime(countDownTs);
+            }, 1000);
 
-        return () => clearInterval(intervalId);
+            return () => clearInterval(intervalId);
     }, [countDownTs]);
 
 

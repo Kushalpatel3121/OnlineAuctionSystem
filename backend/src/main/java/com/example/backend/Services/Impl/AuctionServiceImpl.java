@@ -56,9 +56,17 @@ public class AuctionServiceImpl implements AuctionServices {
 
     @Override
     public List<Auction> getAllAuctions() {
-        List<Auction> auctions = auctionDao.findAll();
+        List<Auction> auctions = auctionDao.findAllByIsCompleted(false);
         return auctions;
     }
+
+    @Override
+    public List<Auction> getAllCompletedAuctions()
+    {
+        List<Auction> auctions = auctionDao.findAllByIsCompleted(true);
+        return auctions;
+    }
+
 
     @Override
     public List<Auction> getAllOfUser(UserEntity userEntity) {
