@@ -9,12 +9,15 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {apis} from "../../Utils/api";
 import {AuctionContext} from "../../Context/Context";
+import MyListing from "./Components/MyListing";
+import MyBidding from "./Components/MyBidding";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [timeComplete, setTimeComplete] = useState(false);
   const [submit, setSubmit] = useState(false);
+  const [url, setUrl] = useState("/");
 
 
 
@@ -31,7 +34,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-      <AuctionContext.Provider value={{ submit, setSubmit, timeComplete, setTimeComplete}}>
+      <AuctionContext.Provider value={{ submit, setSubmit, timeComplete, setTimeComplete, url, setUrl}}>
         <>
           <div>
             <header className=''>
@@ -47,7 +50,8 @@ const Dashboard = () => {
                       <SummaryBox />
                     </div>
                     <div className='mt-2'>
-                      <Auctions/>
+                      {(url == '/') ? <Auctions/> :(url == '/myListing')? <MyListing /> : (url == '/myBidding') ? <MyBidding /> : null}
+
                     </div>
                   </div>
                   <div className='basis-1/4 bg-primary-yellow-1'>

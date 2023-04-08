@@ -35,6 +35,25 @@ public class AuctionController {
     private FileUploadHelper fileUploadHelper;
     @Autowired
     private TokenGenerator tokenGenerator;
+    
+    private List<AuctionResponse> generateAuctionResponse(List<Auction> auctions)
+    {
+        List<AuctionResponse> auctionResponses = new ArrayList<>();
+        for(Auction auction: auctions)
+        {
+            Product product = productServices.getProductByAuction(auction);
+
+            String startDate = auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
+
+            String endDate =(auction.getType().equals("Live Auction"))? "Until Auction is running" :auction.getEndingDate().getDate() + "/" + (auction.getEndingDate().getMonth() + 1) + "/" + (auction.getEndingDate().getYear() + 1900);
+
+            AuctionResponse auctionResponse = new AuctionResponse(auction.getId(), auction.getName(), auction.getType(), product.getCategory(),startDate, endDate, product);
+
+            auctionResponses.add(auctionResponse);
+        }
+        return auctionResponses;
+        
+    }
 
     public UserEntity getUserFromToken(String token)
     {
@@ -155,18 +174,7 @@ public class AuctionController {
         List<Auction> auctions = auctionServices.getAllAuctions();
         List<AuctionResponse> auctionResponses = new ArrayList<>();
         Collections.sort(auctions);
-        for(Auction auction: auctions)
-        {
-            Product product = productServices.getProductByAuction(auction);
-
-            String startDate = auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
-
-            String endDate =(auction.getType().equals("Live Auction"))? "Until Auction is running" :auction.getEndingDate().getDate() + "/" + (auction.getEndingDate().getMonth() + 1) + "/" + (auction.getEndingDate().getYear() + 1900);
-
-            AuctionResponse auctionResponse = new AuctionResponse(auction.getId(), auction.getName(), auction.getType(), product.getCategory(),startDate, endDate, product);
-
-            auctionResponses.add(auctionResponse);
-        }
+        auctionResponses = generateAuctionResponse(auctions);
         return ResponseEntity.ok(auctionResponses);
     }
 
@@ -176,18 +184,7 @@ public class AuctionController {
         List<Auction> auctions = auctionServices.getAllCompletedAuctions();
         List<AuctionResponse> auctionResponses = new ArrayList<>();
         Collections.sort(auctions);
-        for(Auction auction: auctions)
-        {
-            Product product = productServices.getProductByAuction(auction);
-
-            String startDate = auction.getStartingDate().getDate() + "/" + (auction.getStartingDate().getMonth() + 1) + "/" + (auction.getStartingDate().getYear() + 1900);
-
-            String endDate =(auction.getType().equals("Live Auction"))? "Until Auction is running" :auction.getEndingDate().getDate() + "/" + (auction.getEndingDate().getMonth() + 1) + "/" + (auction.getEndingDate().getYear() + 1900);
-
-            AuctionResponse auctionResponse = new AuctionResponse(auction.getId(), auction.getName(), auction.getType(), product.getCategory(),startDate, endDate, product);
-
-            auctionResponses.add(auctionResponse);
-        }
+        auctionResponses = generateAuctionResponse(auctions);
         return ResponseEntity.ok(auctionResponses);
     }
 
@@ -213,5 +210,38 @@ public class AuctionController {
         auction.setCompleted(true);
         auctionServices.saveAuction(auction);
         return ResponseEntity.ok(auction);
+    }
+
+    @GetMapping("get-all-by-user/{userId}")
+    public ResponseEntity getAllByUserId(@PathVariable int userId)
+    {
+        UserEntity userEntity = userServices.getUserById(userId);
+        List<Auction> auctions = auctionServices.getAllOfUser(userEntity);
+        List<AuctionResponse> auctionResponses = new ArrayList<>();
+        Collections.sort(auctions);
+        auctionResponses = generateAuctionResponse(auctions);
+
+        return ResponseEntity.ok(auctionResponses);
+    }
+
+    @GetMapping("get-all-completed-by-user/{userId}")
+    public ResponseEntity getAllCompletedByUserId(@PathVariable int userId)
+    {
+        UserEntity userEntity = userServices.getUserById(userId);
+        List<Auction> auctions = auctionServices.getAllOfUser(userEntity);
+        List<AuctionResponse> auctionResponses = new ArrayList<>();
+        Collections.sort(auctions);
+        auctionResponses = generateAuctionResponse(auctions);
+
+        return ResponseEntity.ok(auctionResponses);
+    }
+
+    @GetMapping("get-all-registered-auction/{userId}")
+    public ResponseEntity getAllRegisteredAuctionsByUser(@PathVariable int userId)
+    {
+        UserEntity userEntity = userServices.getUserById(userId);
+        List<Auction> auctions = userAuctionMappingServices.getAllAuctionRegisteredByUser(userEntity);
+        List<AuctionResponse> auctionResponses = generateAuctionResponse(auctions);
+        return ResponseEntity.ok(auctionResponses);
     }
 }

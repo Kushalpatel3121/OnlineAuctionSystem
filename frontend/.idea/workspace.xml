@@ -5,50 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3022cf16-6443-420b-8ead-11a4c0ab183c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dto/CloseBidRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dto/CloseBidResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/CloseBid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LongOpenBid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/MyBidding.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/MyListing.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/BiddingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/BiddingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/SocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/SocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/CloseBidDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/CloseBidDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Entities/CloseBid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Entities/CloseBid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/CloseBidServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/CloseBidServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/BiddingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/BiddingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/CloseBidServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/CloseBidServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/AuctionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Dao/AuctionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserAuctionMappingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserAuctionMappingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserAuctionMappingServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserAuctionMappingServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/16788071094661.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678807193508Screenshot 2023-02-26 123416.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678807344602Screenshot 2023-02-26 123457.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678807768759Screenshot 2023-02-26 123457.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678807995092Screenshot 2023-02-26 123532.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678808280967Screenshot 2023-02-26 123628.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678808366088Screenshot 2023-02-26 123640.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678808724189Screenshot 2023-02-26 123558.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678862882247Screenshot 2023-02-26 123532.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678863016179Screenshot 2023-02-26 123519.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678863197919Screenshot 2023-02-26 123519.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678863275707Screenshot 2023-02-26 123519.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678863352095Screenshot 2023-02-26 123519.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678893962192Screenshot 2023-02-26 123508.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678894834955Screenshot 2023-02-26 123640.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678911640061Screenshot 2023-02-26 123457.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/16789131774391.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678958968792Screenshot 2023-02-26 123443.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678959485435Screenshot 2023-02-26 123508.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678987062546Screenshot 2023-02-26 123532.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1678987138855Screenshot 2023-02-26 123640.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Product/1679043372132Screenshot 2023-02-26 123640.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Auctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Auctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LiveAuction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LiveAuction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Timer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Timer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Sidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Profile/Components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Profile/Components/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +112,10 @@
       <workItem from="1680174770354" duration="2598000" />
       <workItem from="1680183272643" duration="18519000" />
       <workItem from="1680450305919" duration="3803000" />
+      <workItem from="1680535726783" duration="4376000" />
+      <workItem from="1680794238227" duration="2374000" />
+      <workItem from="1680890506627" duration="904000" />
+      <workItem from="1680935645951" duration="10000" />
     </task>
     <servers />
   </component>

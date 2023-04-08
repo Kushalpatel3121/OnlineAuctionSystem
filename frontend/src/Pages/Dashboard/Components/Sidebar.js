@@ -1,17 +1,24 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
+import {AuctionContext} from "../../../Context/Context";
 
 const Sidebar = () => {
   const [isHomeActive,setHomeActive] = useState(true);
+  const {url, setUrl} = useContext(AuctionContext);
   return (
     <>
         <div className='flex flex-col bg-primary-blue-light/90 text-primary-white-1 w-[16%] min-h-[87vh] max-h-max text-center justify-between'>
             <div className='mt-4'>
               <ul className='flex flex-col list-none'>
-                <li className='mb-3 hover:bg-primary-blue p-6' onClick={() => setHomeActive(!isHomeActive)}><a href=''><Link to='/dashboard'>Home</Link></a></li>
-                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''>My Listings</a></li>
-                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''>My Bids</a></li>
+                <li className='mb-3 hover:bg-primary-blue p-6' onClick={
+                    () => {
+                        setHomeActive(!isHomeActive);
+                        setUrl("/");
+                    }}
+                    ><a href=''><Link to='/dashboard'>Home</Link></a></li>
+                <li className='mb-3 hover:bg-primary-blue p-6'><a onClick={()=>{setUrl("/myListing")}}>My Listings</a></li>
+                <li className='mb-3 hover:bg-primary-blue p-6'><a onClick={ ()=> {setUrl("/myBidding")}}>My Bids</a></li>
                 <li className='mb-3 hover:bg-primary-blue p-6'><a href=''>Reminders</a></li>
               </ul>
             </div>

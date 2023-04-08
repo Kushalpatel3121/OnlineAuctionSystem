@@ -89,4 +89,15 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
         }
         return products;
     }
+
+    @Override
+    public List<Auction> getAllAuctionRegisteredByUser(UserEntity userEntity) {
+        List<UserAuctionMapping> userAuctionMappings = userAuctionMappingDao.findAllByUserEntity(userEntity);
+        List<Auction> auctions = new ArrayList<>();
+        for(UserAuctionMapping userAuctionMapping: userAuctionMappings)
+        {
+            auctions.add(userAuctionMapping.getAuction());
+        }
+        return auctions;
+    }
 }
