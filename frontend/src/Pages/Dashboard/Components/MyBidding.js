@@ -130,7 +130,7 @@ const MyBidding = () => {
     }
 
     useEffect(()=>{
-        axios.get(`${apis.getAllAuctionOfUser}/${userData.id}`, {headers: {Authorization: token}})
+        axios.get(`${apis.getAllParticipatedAuction}/${userData.id}`, {headers: {Authorization: token}})
             .then((res)=>{
                 setRows(res.data);
             })
@@ -138,7 +138,7 @@ const MyBidding = () => {
                 console.log(err);
             });
 
-        axios.get(`${apis.getAllCompletedAuctionOfUser}/${userData.id}`, {headers: {Authorization: token}})
+        axios.get(`${apis.getAllParticipatedCompletedAuction}/${userData.id}`, {headers: {Authorization: token}})
             .then((res)=>{
                 setCompletedRows(res.data);
             })
@@ -287,7 +287,7 @@ const MyBidding = () => {
 
             <div className='z-0 mt-8'>
                 <div className='font-bold text-2xl'>
-                    <h1>Your Completed Auctions</h1>
+                    <h1>Your Participation</h1>
                     <hr className='mb-2'></hr>
                 </div>
                 <div>

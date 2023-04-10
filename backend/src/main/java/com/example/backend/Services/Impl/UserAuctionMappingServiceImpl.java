@@ -96,7 +96,20 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
         List<Auction> auctions = new ArrayList<>();
         for(UserAuctionMapping userAuctionMapping: userAuctionMappings)
         {
-            auctions.add(userAuctionMapping.getAuction());
+            if(userAuctionMapping.getAuction().getCompleted() == false && userAuctionMapping.getAuction().getUserEntity().getId() != userEntity.getId())
+                auctions.add(userAuctionMapping.getAuction());
+        }
+        return auctions;
+    }
+
+    @Override
+    public List<Auction> getAllCompletedAuctionRegisteredByUser(UserEntity userEntity) {
+        List<UserAuctionMapping> userAuctionMappings = userAuctionMappingDao.findAllByUserEntity(userEntity);
+        List<Auction> auctions = new ArrayList<>();
+        for(UserAuctionMapping userAuctionMapping: userAuctionMappings)
+        {
+            if(userAuctionMapping.getAuction().getCompleted() == true && userAuctionMapping.getAuction().getUserEntity().getId() != userEntity.getId())
+                auctions.add(userAuctionMapping.getAuction());
         }
         return auctions;
     }

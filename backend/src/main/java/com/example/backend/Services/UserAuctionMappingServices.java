@@ -14,4 +14,5 @@ public interface UserAuctionMappingServices {
     public List<UserEntity> getAllRegisteredUser(int auctionID);
     public List<Product> getAllRegistered(UserEntity userEntity);
     public List<Auction> getAllAuctionRegisteredByUser(UserEntity userEntity);
+    List<Auction> getAllCompletedAuctionRegisteredByUser(UserEntity userEntity);
 }

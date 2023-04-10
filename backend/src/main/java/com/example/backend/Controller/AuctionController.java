@@ -244,4 +244,13 @@ public class AuctionController {
         List<AuctionResponse> auctionResponses = generateAuctionResponse(auctions);
         return ResponseEntity.ok(auctionResponses);
     }
+
+    @GetMapping("get-all-completed-registered-auction/{userId}")
+    public ResponseEntity getAllCompletedRegisteredAuctionsByUser(@PathVariable int userId)
+    {
+        UserEntity userEntity = userServices.getUserById(userId);
+        List<Auction> auctions = userAuctionMappingServices.getAllCompletedAuctionRegisteredByUser(userEntity);
+        List<AuctionResponse> auctionResponses = generateAuctionResponse(auctions);
+        return ResponseEntity.ok(auctionResponses);
+    }
 }
