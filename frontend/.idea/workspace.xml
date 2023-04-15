@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3022cf16-6443-420b-8ead-11a4c0ab183c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AuctionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserAuctionMappingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/Impl/UserAuctionMappingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserAuctionMappingServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Services/UserAuctionMappingServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/MyBidding.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/MyBidding.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/CloseBid.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/CloseBid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LiveAuction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LiveAuction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LongOpenBid.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/Components/Auction/Components/LongOpenBid.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,6 +111,9 @@
       <workItem from="1680890506627" duration="904000" />
       <workItem from="1680935645951" duration="10000" />
       <workItem from="1681098593453" duration="1602000" />
+      <workItem from="1681101026191" duration="5278000" />
+      <workItem from="1681139784860" duration="1867000" />
+      <workItem from="1681288134053" duration="4016000" />
     </task>
     <servers />
   </component>

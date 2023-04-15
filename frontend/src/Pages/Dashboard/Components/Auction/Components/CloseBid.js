@@ -3,10 +3,18 @@ import Timer from "../../Timer";
 import Divider from "@mui/material/Divider";
 import {AuctionContext} from "../../../../../Context/Context";
 import TextField from "@mui/material/TextField";
-import {Tooltip} from "@mui/material";
+import {DialogContentText, FormControl, Tooltip} from "@mui/material";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import {apis} from "../../../../../Utils/api";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from '@mui/material/DialogContent';
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+
 const CloseBid = ({product}) => {
     const {timeComplete, setTimeComplete, submit, setSubmit} = useContext(AuctionContext);
     const [isAuctionCompleted, setIsAuctionComplted] = useState(product.auction.completed);
@@ -19,17 +27,17 @@ const CloseBid = ({product}) => {
     const [change, setChange] = useState(false);
     const [finalBids, setFinalBids] = useState([]);
     const [userRegistered, setUserRegistered] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [winner, setWinner] = useState();
 
     useEffect(()=>{
         const dt = new Date(Date.parse(product.auction.endingDate));
         if(dt.getTime() <= new Date().getTime())
         {
-            console.log(product.auction)
             if(product.auction.completed == false)
             {
                 axios.get(`${apis.changeAuctionStatus}/${product.auction.id}`, {headers: {Authorization: token}})
                     .then((res)=>{
-                        console.log(res.data);
                         product.auction.completed = res.data.completed;
                     })
                     .catch((err)=>{
@@ -46,7 +54,6 @@ const CloseBid = ({product}) => {
     useEffect(()=>{
         axios.get(`${apis.getCloseBid}/${product.id}/${user.id}`, {headers:{Authorization:token}})
             .then((res)=>{
-                console.log(res.data)
                 if(res.data.data == true)
                 {
                     setAlreadyBid(true);
@@ -65,7 +72,9 @@ const CloseBid = ({product}) => {
                 })
                 .catch((err)=>{
                     console.log(err);
-                })
+                });
+
+            // axios.get(`${apis.getUserDetailsById}/`)
         }
 
         axios.get(`${apis.checkUserRegistration}/${user.id}/${product.auction.id}`, {headers: {Authorization: token}})
@@ -89,7 +98,7 @@ const CloseBid = ({product}) => {
             console.log(bidData)
             axios.post(`${apis.postCloseBid}/${product.id}/${user.id}`, {bid:bidData}, {headers:{Authorization:token}})
                 .then((res)=>{
-                    console.log(res.data);
+
                     if(change == false)
                         setChange(true);
                     else
@@ -100,6 +109,27 @@ const CloseBid = ({product}) => {
                 })
         }
     }
+
+    function handleClose() {
+        setOpen(false);
+    }
+
+    function handleClickOpen() {
+        if(finalBids.length != 0)
+        {
+
+            axios.get(`${apis.getUserDetailsById}/${finalBids[0].userEntity.id}`, {headers:{Authorization:token}})
+                .then((res)=>{
+                    setWinner(res.data);
+                })
+                .catch((err)=>{
+                    console.log(err);
+                });
+        }
+        setOpen(true);
+    }
+
+
 
     return (
         <>
@@ -154,7 +184,42 @@ const CloseBid = ({product}) => {
                             }
 
                         </div>
+                        {
+                            (product.auction.userEntity.username == user.username) ?
+
+                        <>
+                            {
+                                (finalBids.length == 0 && winner == null) ? null :
+                        <div className='my-8'>
+                            <Dialog open={open} onClose={handleClose} fullWidth={true}>
+                                <DialogTitle>Winner : {finalBids[0].userEntity.username}</DialogTitle>
+                                <DialogContent>
+                                    <h3 className='font-bold'>Details: </h3>
+                                    <br />
+                                    <p><b>Name: </b> {winner.name}</p><br/>
+                                    <p><b>Email: </b> {winner.userEntity.email}</p><br/>
+                                    <p><b>Contact No: </b> {winner.mobile}</p><br/>
+                                    <p><b>Address: </b> {winner.hNo}, {winner.line1}, {winner.line2}, {winner.city} - {winner.pincode}</p>
+                                    <br/>
+
+
+
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose}>Cancel</Button>
+                                </DialogActions>
+                            </Dialog>
+                        </div>
+
+                            }
+                        <div className='mt-8 text-center'>
+
+                            <Button variant='contained' sx={{bgcolor:'#004d91'}} onClick={handleClickOpen}>View Winner</Button>
+                        </div>
                     </>
+                                : null
+                        }
+                        </>
                     :(userRegistered == false) ?
                         (product.auction.userEntity.username == user.username) ?
                             <>

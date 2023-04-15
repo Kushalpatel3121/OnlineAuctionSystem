@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 export const baseUrl = "http://localhost:8080"
 
 export const apis = {
+    getUserDetailsById: `${baseUrl}/get-by-id`,
     login : `${baseUrl}/auth/login`,
     signup : `${baseUrl}/auth/register`,
     usernameCheck: `${baseUrl}/auth/check-username`,

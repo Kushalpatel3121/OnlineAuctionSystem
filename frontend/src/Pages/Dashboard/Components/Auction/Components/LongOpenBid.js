@@ -9,6 +9,10 @@ import Button from "@mui/material/Button";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import {toast} from "react-toastify";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from '@mui/material/DialogContent';
 const LongOpenBid = ({product}) => {
     const {submit, setSubmit, timeComplete, setTimeComplete } = useContext(AuctionContext);
     const [recentBids, setRecentBids] = useState([]);
@@ -21,6 +25,9 @@ const LongOpenBid = ({product}) => {
     let sendingData = {currentBid: highBid, userEntity: user, product: product};
     const startDate = new Date(product.auction.startingDate).toISOString();
     const endDate = new Date(product.auction.endingDate).toISOString();
+    const [winner, setWinner] = useState();
+    const [open, setOpen] = useState(false);
+
     product.auction.startingDate = startDate;
     product.auction.endingDate = endDate;
 
@@ -98,6 +105,26 @@ const LongOpenBid = ({product}) => {
 
     }, [])
 
+    function handleClose() {
+        setOpen(false);
+    }
+
+    function handleClickOpen() {
+        if(recentBids.length != 0)
+        {
+
+            axios.get(`${apis.getUserDetailsById}/${recentBids[0].userEntity.id}`, {headers:{Authorization:token}})
+                .then((res)=>{
+                    setWinner(res.data);
+                })
+                .catch((err)=>{
+                    console.log(err);
+                });
+        }
+        setOpen(true);
+    }
+
+
 
     return (
         (isAuctionCompleted) ? (recentBids.length == 0) ? null :
@@ -138,6 +165,35 @@ const LongOpenBid = ({product}) => {
                                 }
                             })
                     }
+
+                    {
+                        (winner == null) ? null :
+                            <div className='my-8'>
+                                <Dialog open={open} onClose={handleClose} fullWidth={true}>
+                                    <DialogTitle>Winner : {recentBids[0].userEntity.username}</DialogTitle>
+                                    <DialogContent>
+                                        <h3 className='font-bold'>Details: </h3>
+                                        <br />
+                                        <p><b>Name: </b> {winner.name}</p><br/>
+                                        <p><b>Email: </b> {winner.userEntity.email}</p><br/>
+                                        <p><b>Contact No: </b> {winner.mobile}</p><br/>
+                                        <p><b>Address: </b> {winner.hNo}, {winner.line1}, {winner.line2}, {winner.city} - {winner.pincode}</p>
+                                        <br/>
+
+
+
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleClose}>Cancel</Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
+                    }
+
+                    <div className='mt-8 text-center'>
+
+                        <Button variant='contained' sx={{bgcolor:'#004d91'}} onClick={handleClickOpen}>View Winner</Button>
+                    </div>
 
                 </div>
             </>
