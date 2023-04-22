@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import axios from "axios";
-import {apis} from "../../../Config/api";
+import {apis} from "../../../Utils/api";
+import {AuctionContext} from "../../../Context/Context";
 
 const SummaryBox = () => {
     const [totalAuctions, setTotalAuctions] = useState(0);
     const [createdAuctions, setCreatedAuction] = useState(0);
     const [registeredAuctions, setRegisteredAuction] = useState(0);
     const [token, setToken] = useState(localStorage.getItem("token"));
+    const {submit, setSubmit} = useContext(AuctionContext);
 
     useEffect(()=>{
         axios.get(apis.getTotalAuctions, {headers: {Authorization: token}})
@@ -26,7 +28,7 @@ const SummaryBox = () => {
                 setRegisteredAuction(res.data);
             })
             .catch((err)=>{ console.log(err); })
-    }, [])
+    }, [submit])
   return (
     <>
         <div className='flex flex-row justify-between justify-items-center'>

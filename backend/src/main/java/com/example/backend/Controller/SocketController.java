@@ -1,5 +1,6 @@
 package com.example.backend.Controller;
 
+import com.example.backend.Entities.Auction;
 import com.example.backend.Entities.Bidding;
 import com.example.backend.Services.AuctionServices;
 import com.example.backend.Services.BiddingService;
@@ -12,6 +13,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class SocketController {
@@ -35,8 +38,22 @@ public class SocketController {
     @SendTo("/topic/return-to/{auctionId}/{productId}")
     public ResponseEntity bid(@DestinationVariable int auctionId, @DestinationVariable int productId,
                               @RequestBody Bidding bidding) throws JsonProcessingException {
-//        biddingService.updateBid(bidding);
-//        System.out.println(bidding);
-        return ResponseEntity.ok(bidding);
+        Bidding newBid = new Bidding();
+        newBid.setCurrentBid(bidding.getCurrentBid());
+        newBid.setProduct(bidding.getProduct());
+        newBid.setUserEntity(bidding.getUserEntity());
+        System.out.println(newBid);
+        biddingService.saveBidding(newBid);
+        List<Bidding> biddings = biddingService.getByProductId(productId);
+        return ResponseEntity.ok(biddings);
+    }
+
+    @MessageMapping("end-auction/{auctionId}/{productId}")
+    @SendTo("/topic/return-to/end-auction/{auctionId}/{productId}")
+    public ResponseEntity endAuction(@DestinationVariable int auctionId, @DestinationVariable int productId) throws JsonProcessingException {
+        Auction auction = auctionServices.getAuctionById(auctionId);
+        auction.setCompleted(true);
+        auctionServices.saveAuction(auction);
+        return ResponseEntity.ok("end auction");
     }
 }

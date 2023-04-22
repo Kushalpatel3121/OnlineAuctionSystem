@@ -1,25 +1,27 @@
-import React, { useState } from 'react'
+import React, {useContext, useState} from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimeClock } from '@mui/x-date-pickers/TimeClock';
 import Select from '@mui/material/Select';
-import { Divider, FormHelperText, Stack } from '@mui/material';
+import {DialogContentText, Divider, FormHelperText, Stack} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { PhotoCamera } from '@mui/icons-material';
 import axios from "axios";
-import { apis } from "../../../Config/api";
-import { toast, ToastContainer } from "react-toastify";
+import {apis} from "../../../Utils/api";
+import {toast, ToastContainer} from "react-toastify";
+import {AuctionContext} from "../../../Context/Context";
+
 
 const Subheader = () => {
   const [open, setOpen] = React.useState(false);
+  const { loadAllAuctions, submit, setSubmit} = useContext(AuctionContext);
 
   //Token and user data
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -122,22 +124,41 @@ const Subheader = () => {
 
 
       axios.post(`${apis.createAuction}/${user.id}`, formData,
-        {
-          headers: {
-            Authorization: token,
-            "Content-Type": "multipart/form-data"
-          }
-        })
-        .then((res) => {
-          toast.success("Auction created successfully", { position: "bottom-right" });
-        })
-        .catch((err) => { toast.error("Some error while creating auction", { position: "bottom-right" }) });
+          {
+            headers:{
+              Authorization:token,
+              "Content-Type":"multipart/form-data"
+            }})
+          .then((res) => {
+            toast.success("Auction created successfully", {position: "bottom-right"});
+            if(submit == false)
+            setSubmit(true);
+            else
+              setSubmit(false);
+          })
+          .catch((err) => { toast.error("Some error while creating auction", {position: "bottom-right"})});
 
       setOpen(false);
     }
+
   };
 
   const handleCancel = () => {
+    setNewAuctionError({
+      auctionName: '',
+      auctionType: '',
+      auctionStartingDate: '',
+      auctionStartingTime: '',
+      auctionEndingDate: '',
+      auctionEndingTime: '',
+      productName: '',
+      productDescription: '',
+      productCategory: '',
+      otherCategory: '',
+      productBasePrice: '',
+      productAge: '',
+      productImage:''
+    });
     setOpen(false);
   }
 
@@ -216,9 +237,10 @@ const Subheader = () => {
                             const mins = (value.$d.getMinutes() > 9) ? `${value.$d.getMinutes()}` : `0${value.$d.getMinutes()}`;
                             const secs = (value.$d.getSeconds() > 9) ? `${value.$d.getSeconds()}` : `0${value.$d.getSeconds()}`;
                             const startTime = hours + ":" + mins + ":" + secs;
+
                             setNewAuctionDetails(values => ({ ...values, auctionStartingTime: startTime }));
                           }}
-                          required />
+                          required ampm={false}/>
                         <span style={{ color: "red", fontSize: "12px" }}>{NewAuctionError.auctionStartingTime}</span>
 
                         {
@@ -245,7 +267,7 @@ const Subheader = () => {
                                   const endTime = hours + ":" + mins + ":" + secs;
                                   setNewAuctionDetails(values => ({ ...values, auctionEndingTime: endTime }));
                                 }}
-                                required />
+                                required ampm={false}/>
                               <span style={{ color: "red", fontSize: "12px" }}>{NewAuctionError.auctionEndingTime}</span>
                             </> :
                             <>

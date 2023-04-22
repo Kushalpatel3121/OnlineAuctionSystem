@@ -40,4 +40,12 @@ public class HomeController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Server error");
     }
 
+    @GetMapping("/get-by-id/{id}")
+    public ResponseEntity getUserById(@PathVariable  int id)
+    {
+        UserEntity userEntity = userServices.getUserById(id);
+        UserDetails userDetails = userDetailsServices.getUserDetailsByUser(userEntity);
+        return ResponseEntity.ok(userDetails);
+    }
+
 }

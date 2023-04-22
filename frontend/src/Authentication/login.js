@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import {Outlet, Link, useNavigate} from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { apis } from "../Config/api";
+import { apis } from "../Utils/api";
 import "react-toastify/dist/ReactToastify.css"
 
 
@@ -28,8 +28,12 @@ const Login = () => {
             toast.success("Login Successful", {position: "bottom-right"});
         })
         .catch( (err) => {
-            console.log(err)
-            toast.error("Username or Password is incorrect", {position: "bottom-right"});
+            console.log(err.code)
+            if(err.code == 'ERR_BAD_REQUEST')
+                toast.error("Username or Password is incorrect", {position: "bottom-right"});
+            else
+                toast.error("Oops! Server Error", {position: "bottom-right"});
+
         })
     }
 

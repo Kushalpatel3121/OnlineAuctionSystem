@@ -6,6 +6,7 @@ import Listings from './Pages/Listings/Listings';
 import Bids from './Pages/Bids/Bids';
 import Home from './Pages/Home/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MyListing from "./Pages/Dashboard/Components/MyListing";
 import AboutUs from './Pages/AboutUs/AboutUs';
 
 function App() {

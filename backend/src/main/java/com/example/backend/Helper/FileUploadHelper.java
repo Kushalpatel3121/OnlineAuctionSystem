@@ -15,7 +15,7 @@ import java.util.Date;
 
 @Component
 public class FileUploadHelper {
-    public final String UPLOAD_DIR = "C:\\Users\\vivek\\Desktop\\OnlineAuctionSystem\\backend\\src\\main\\resources\\Static\\image\\product";
+    public final String UPLOAD_DIR = "C:\\Users\\vivek\\Desktop\\OnlineAuctionSystem\\frontend\\public\\images\\Product";
     public String fileName = null;
     public ResponseEntity uploadFile(MultipartFile multipartFile)
     {

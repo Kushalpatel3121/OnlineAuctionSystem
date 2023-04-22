@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {apis} from "../../../Utils/api";
 import { apis } from "../../../Config/api";
-
 
 const Personalinfo = () => {
   const [details, setDetails] = useState({
@@ -24,18 +24,31 @@ const Personalinfo = () => {
   });
   const navigate = useNavigate();
 
-  // useEffect(()=> {
-  //   axios.get(apis.getUserDetails, { headers: { Authorization: localStorage.getItem("token")}})
-  //       .then((res)=>{
-  //         // console.log(res.data);
-  //         setDetails(res.data);
-  //       })
-  //       .catch((err)=>{
-  //         console.log(err)
-  //         navigate("../../login")
-  //       });
+  useEffect(()=> {
+    axios.get(apis.getUserDetails, { headers: { Authorization: localStorage.getItem("token")}})
+        .then((res)=>{
+          console.log(res.data);
 
-  // }, [])
+          setDetails(res.data);
+        })
+        .catch((err)=>{
+          console.log(err)
+          navigate("../../login")
+        });
+        
+   useEffect(()=> {
+     axios.get(apis.getUserDetails, { headers: { Authorization: localStorage.getItem("token")}})
+         .then((res)=>{
+           // console.log(res.data);
+           setDetails(res.data);
+         })
+         .catch((err)=>{
+           console.log(err)
+           navigate("../../login")
+         });
+
+
+   }, [])
 
   return (
     <>
