@@ -18,7 +18,7 @@ const Header = () => {
         <div className='flex flex-row mx-9 items-center'>
           <ul className='flex flex-row list-none mr-9'>
             <li className='mr-10'><a href=''>About Us</a></li>
-            <li><a href=''>Contact</a></li>
+            {/* <li><a href=''>Contact</a></li> */}
           </ul>
           <div className='w-10 dropdown inline-block'>
             <button>
