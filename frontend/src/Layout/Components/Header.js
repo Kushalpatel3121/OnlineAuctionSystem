@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Styles/Header.css'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -11,20 +12,22 @@ const Header = () => {
         </div>
         <div className='flex flex-row mx-9 items-center'>
           <ul className='flex flex-row list-none mr-9'>
-            <li className='mr-10'><a href=''>About Us</a></li>
-            <li><a href=''>Contact</a></li>
+            <li className='mr-10'><Link to='/about'>About Us</Link></li>
+            <li className='mr-10'><Link to='/signup'>Sign Up</Link></li>
+            <li className='mr-10'><Link to='/login'>Log In</Link></li>
+            {/* <li><a href=''>Contact</a></li> */}
           </ul>
-          <div className='w-10 dropdown inline-block'>
+          {/* <div className='w-10 dropdown inline-block'>
             <button>
               <img src='images/account-icon-48.png' alt='account-icon'></img>
             </button>
             <div>
               <ul className='dropdown-menu hidden py-3 px-3 bg-primary-blue-light/90 absolute rounded-t rounded-b w-32 right-[1%] divide-y divide-solid z-10'>
-                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mb-1 rounded-sm'>My Profile</a></li>
-                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mt-1 rounded-sm'>Log Out</a></li>
+                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mb-1 rounded-sm'>Sign Up</a></li>
+                <li className=''><a className='hover:bg-primary-blue whitespace-no-wrap block py-2 px-2 mt-1 rounded-sm'>Log In</a></li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

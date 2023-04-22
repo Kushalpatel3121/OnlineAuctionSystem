@@ -16,7 +16,7 @@ const Sidebar = () => {
               </ul>
             </div>
             <div className='flex flex-row justify-center align-middle mb-5 ml-2'>
-              <img src='images/copyright-symbol.png' className='w-4 h-4 opacity-60'></img>
+              <img src='/images/copyright-symbol.png' className='w-4 h-4 opacity-60'></img>
               <p className='text-sm text-primary-dark-1'>All Rights Reserved | BidSphere | 2023</p>
             </div>
         </div>
