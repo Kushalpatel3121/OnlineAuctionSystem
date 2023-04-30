@@ -3,7 +3,7 @@ import React from 'react'
 const Body = () => {
   return (
     <>
-        <div className='flex flex-row min-h-[80vh]'>
+        <div className='flex flex-row min-h-[85vh]'>
             <div className='basis-2/5 flex justify-center'>
                 <img src='/images/home.jpg' className='w-[50vw]'alt='auction-vector'/>
             </div>

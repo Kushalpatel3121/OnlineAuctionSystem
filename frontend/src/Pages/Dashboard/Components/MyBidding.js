@@ -228,6 +228,7 @@ const MyBidding = () => {
                     <h1>Your Registrations</h1>
                     <hr className='mb-2'></hr>
                 </div>
+                {rows.length == 0 ? <h3 className="text-center font-bold">Your haven't register for any auction.</h3> : 
                 <div>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer sx={{ maxHeight: 440 }}>
@@ -236,9 +237,9 @@ const MyBidding = () => {
                                     <TableRow>
                                         {columns.map((column) => (
                                             <TableCell
-                                                key={column.id}
-                                                align={column.align}
-                                                style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
                                             >
                                                 {column.label}
                                             </TableCell>
@@ -249,7 +250,7 @@ const MyBidding = () => {
                                     {rows
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         .map((row, index) => {
-
+                                            
                                             return (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => { showAuctionDetails(row.id)}}>
                                                     {columns.map((column) => {
@@ -278,9 +279,10 @@ const MyBidding = () => {
                             page={page}
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
-                        />
+                            />
                     </Paper>
                 </div>
+                }
             </div>
 
 
@@ -290,6 +292,7 @@ const MyBidding = () => {
                     <h1>Your Participation</h1>
                     <hr className='mb-2'></hr>
                 </div>
+                {(completedRows.length == 0) ? <h3 className="text-center font-bold">You haven't any past participation</h3> : 
                 <div>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer sx={{ maxHeight: 440 }}>
@@ -298,9 +301,9 @@ const MyBidding = () => {
                                     <TableRow>
                                         {columns.map((column) => (
                                             <TableCell
-                                                key={column.id}
-                                                align={column.align}
-                                                style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
                                             >
                                                 {column.label}
                                             </TableCell>
@@ -311,7 +314,7 @@ const MyBidding = () => {
                                     {completedRows
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         .map((row, index) => {
-
+                                            
                                             return (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => { showAuctionDetails(row.id)}}>
                                                     {columns.map((column) => {
@@ -343,6 +346,7 @@ const MyBidding = () => {
                         />
                     </Paper>
                 </div>
+            }
             </div>
 
 

@@ -3,7 +3,7 @@ package com.example.backend.Entities;
 import jakarta.persistence.*;
 
 @Entity
-public class Bidding {
+public class Bidding +{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

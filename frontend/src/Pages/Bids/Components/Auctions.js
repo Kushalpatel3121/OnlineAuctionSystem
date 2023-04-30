@@ -18,7 +18,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import {Tooltip } from '@mui/material';
 import axios from "axios";
-import { apis } from "../../../Config/api";
+import {apis} from "../../../Utils/api";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -70,9 +70,9 @@ const Auctions = () => {
     }
 
 
-    // useEffect(() => {
-    //         loadAllAuctions();
-    // }, []);
+    useEffect(() => {
+            loadAllAuctions();
+    }, []);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);

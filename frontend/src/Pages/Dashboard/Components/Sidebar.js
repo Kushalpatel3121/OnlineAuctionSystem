@@ -18,13 +18,9 @@ const Sidebar = () => {
                     }}
                     ><a href=''><Link to='/dashboard'>Home</Link></a></li>
                 <li className='mb-3 hover:bg-primary-blue p-6'><a className='hover:cursor-pointer' onClick={()=>{setUrl("/myListing")}}>My Listings</a></li>
-                <li className='mb-3 hover:bg-primary-blue  p-6'><a className='hover:cursor-pointer' onClick={ ()=> {setUrl("/myBidding")}}>My Bids</a></li>
-                <li className='mb-3 hover:bg-primary-blue hover:cursor-pointer p-6'><a href=''>Reminders</a></li>
+                {/* <li className='mb-3 hover:bg-primary-blue  p-6'><a className='hover:cursor-pointer' onClick={ ()=> {setUrl("/myBidding")}}>My Bids</a></li>
+                <li className='mb-3 hover:bg-primary-blue hover:cursor-pointer p-6'><a href=''>Reminders</a></li> */}
 
-                <li className='mb-3 hover:bg-primary-blue p-6' onClick={() => setHomeActive(!isHomeActive)}><a href=''><Link to='/dashboard'>Home</Link></a></li>
-                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''><Link to='/dashboard/listings'>My Listings</Link></a></li>
-                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''><Link to='/dashboard/bids'>My Bids</Link></a></li>
-                <li className='mb-3 hover:bg-primary-blue p-6'><a href=''>Reminders</a></li>
 
               </ul>
             </div>

@@ -96,7 +96,7 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
         List<Auction> auctions = new ArrayList<>();
         for(UserAuctionMapping userAuctionMapping: userAuctionMappings)
         {
-            if(userAuctionMapping.getAuction().getCompleted() == false && userAuctionMapping.getAuction().getUserEntity().getId() != userEntity.getId())
+            if(userAuctionMapping.getAuction().getCompleted() == false && userAuctionMapping.getAuction().getUserEntity().getId() == userEntity.getId())
                 auctions.add(userAuctionMapping.getAuction());
         }
         return auctions;
@@ -108,7 +108,7 @@ public class UserAuctionMappingServiceImpl implements UserAuctionMappingServices
         List<Auction> auctions = new ArrayList<>();
         for(UserAuctionMapping userAuctionMapping: userAuctionMappings)
         {
-            if(userAuctionMapping.getAuction().getCompleted() == true && userAuctionMapping.getAuction().getUserEntity().getId() != userEntity.getId())
+            if(userAuctionMapping.getAuction().getCompleted() == true && userAuctionMapping.getAuction().getUserEntity().getId() == userEntity.getId())
                 auctions.add(userAuctionMapping.getAuction());
         }
         return auctions;

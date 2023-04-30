@@ -134,13 +134,23 @@ const LongOpenBid = ({product}) => {
                 </div>
                 <Divider orientation='horizontal' />
 
-                <div className='my-3 flex flex-col'>
-                    <h3 className='font-bold text-lg'>Sold To : </h3>
-                    <div className='flex align-middle justify-between'>
-                        <p>Rs. {recentBids[0].currentBid}</p>
-                        <p className='font-light' style={{fontSize: "14px"}}>{recentBids[0].userEntity.username}</p>
+                {
+                    (recentBids.length == 0) ? null : (recentBids.length == 1) ?
+                        <div className='my-3 flex flex-col'>
+                            <h3 className='font-bold text-lg'>Unsold</h3>
+                            <Divider orientation="horizontal" />
+                        </div>
+
+                    :
+                
+                    <div className='my-3 flex flex-col'>
+                        <h3 className='font-bold text-lg'>Sold To : </h3>
+                        <div className='flex align-middle justify-between'>
+                            <p>Rs. {recentBids[0].currentBid}</p>
+                            <p className='font-light' style={{fontSize: "14px"}}>{recentBids[0].userEntity.username}</p>
+                        </div>
                     </div>
-                </div>
+                }
 
                 <Divider orientation='horizontal' />
                 <div className='flex flex-col my-3'>
@@ -190,10 +200,14 @@ const LongOpenBid = ({product}) => {
                             </div>
                     }
 
-                    <div className='mt-8 text-center'>
+                    {
+                        (product.auction.userEntity.username == user.username) ?
+                            <div className='mt-8 text-center'>
 
-                        <Button variant='contained' sx={{bgcolor:'#004d91'}} onClick={handleClickOpen}>View Winner</Button>
-                    </div>
+                                <Button variant='contained' sx={{bgcolor:'#004d91'}} onClick={handleClickOpen}>View Winner</Button>
+                            </div>
+                        : null
+                    }
 
                 </div>
             </>

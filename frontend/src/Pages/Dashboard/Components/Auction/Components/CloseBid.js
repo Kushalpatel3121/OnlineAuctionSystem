@@ -152,7 +152,15 @@ const CloseBid = ({product}) => {
                             <Divider orientation='horizontal' />
                         </div>
                         {
-                            (finalBids.length == 0) ? null :
+                            
+                            (finalBids.length == 0) ? null :  (finalBids.length == 1) ?
+                            <>
+                                    <div>
+                                        <h3 className='font-bold my-4'>Unsold</h3>
+                                        <Divider orientation='horizontal' />
+                                        </div>
+
+                            </> :
                                 <>
                                     <div>
                                         <h3 className='font-bold my-4'>Sold To:</h3>

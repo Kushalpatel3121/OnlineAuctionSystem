@@ -140,6 +140,7 @@ const MyListing = () => {
     useEffect(()=>{
         axios.get(`${apis.getAllAuctionOfUser}/${userData.id}`, {headers: {Authorization: token}})
             .then((res)=>{
+                console.log(res.data);
                 setRows(res.data);
             })
             .catch((err)=>{
@@ -148,6 +149,7 @@ const MyListing = () => {
 
         axios.get(`${apis.getAllCompletedAuctionOfUser}/${userData.id}`, {headers: {Authorization: token}})
             .then((res)=>{
+                
                 setCompletedRows(res.data);
             })
             .catch((err)=>{
@@ -236,6 +238,7 @@ const MyListing = () => {
                     <h1>Your Auctions</h1>
                     <hr className='mb-2'></hr>
                 </div>
+                {(rows.length == 0)? <h3 className="text-center font-bold">You do not have any running auction of yours</h3> : 
                 <div>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer sx={{ maxHeight: 440 }}>
@@ -244,9 +247,9 @@ const MyListing = () => {
                                     <TableRow>
                                         {columns.map((column) => (
                                             <TableCell
-                                                key={column.id}
-                                                align={column.align}
-                                                style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
                                             >
                                                 {column.label}
                                             </TableCell>
@@ -257,7 +260,7 @@ const MyListing = () => {
                                     {rows
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         .map((row, index) => {
-
+                                            
                                             return (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => { showAuctionDetails(row.id)}}>
                                                     {columns.map((column) => {
@@ -286,18 +289,21 @@ const MyListing = () => {
                             page={page}
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
-                        />
+                            />
                     </Paper>
                 </div>
+                }
             </div>
 
 
 
-            <div className='z-0 mt-8'>
+            {/* <div className='z-0 mt-8'>
                 <div className='font-bold text-2xl'>
                     <h1>Your Completed Auctions</h1>
                     <hr className='mb-2'></hr>
                 </div>
+                {(completedRows.length == 0) ?<h3 className="text-center font-bold">You do not have completed auction of yours</h3> : 
+                
                 <div>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer sx={{ maxHeight: 440 }}>
@@ -306,9 +312,9 @@ const MyListing = () => {
                                     <TableRow>
                                         {columns.map((column) => (
                                             <TableCell
-                                                key={column.id}
-                                                align={column.align}
-                                                style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{ minWidth: column.minWidth, fontWeight: "bold", zIndex: 0 }}
                                             >
                                                 {column.label}
                                             </TableCell>
@@ -319,7 +325,7 @@ const MyListing = () => {
                                     {completedRows
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         .map((row, index) => {
-
+                                            
                                             return (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => { showAuctionDetails(row.id)}}>
                                                     {columns.map((column) => {
@@ -348,10 +354,11 @@ const MyListing = () => {
                             page={page}
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
-                        />
+                            />
                     </Paper>
                 </div>
-            </div>
+                }
+            </div> */}
 
 
             <ToastContainer />

@@ -15,8 +15,8 @@ import { Divider, FormHelperText, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { PhotoCamera } from '@mui/icons-material';
 import axios from "axios";
-import { apis } from "../../../Config/api";
 import { toast, ToastContainer } from "react-toastify";
+import {apis} from "../../../Utils/api";
 
 const Subheader = () => {
   const [open, setOpen] = React.useState(false);

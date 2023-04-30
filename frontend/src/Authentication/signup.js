@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Outlet, Link } from "react-router-dom";
+import {Outlet, Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { apis } from "../Utils/api";
@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 let title = ["Login Details","Personal Details","Address Details"];
 
 const Signup = () => {
+    let navigate = useNavigate();
     let [page,setPage] = useState(0);
     let [details,setDetails] = useState({
         username:"",
@@ -58,8 +59,9 @@ const Signup = () => {
             if(response.data)
             {
                 toast.success("Register successfully", {position:"bottom-right"});
+                navigate("/login");
+
             }
-            console.log(response.data);
         })
         .catch((error) => {
 

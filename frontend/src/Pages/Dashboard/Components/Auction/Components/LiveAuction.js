@@ -129,14 +129,23 @@ const LiveAuction = ({product}) => {
                     <h3 className='text-center font-bold text-lg'>Auction has been ended</h3>
                 </div>
                 <Divider orientation='horizontal' />
-
-                <div className='my-3 flex flex-col'>
-                    <h3 className='font-bold text-lg'>Sold To : </h3>
-                    <div className='flex align-middle justify-between'>
-                        <p>Rs. {recentBids[0].currentBid}</p>
-                        <p className='font-light' style={{fontSize: "14px"}}>{recentBids[0].userEntity.username}</p>
-                    </div>
-                </div>
+                {
+                    (recentBids.length == 0) ? null : (recentBids.length == 1) ?
+                    
+                        <div className='my-3 flex flex-col'>
+                            <h3 className='font-bold text-lg'>Unsold</h3>
+                            <br />
+                            <Divider orientation="horizontal" />
+                        </div>
+                    :
+                        <div className='my-3 flex flex-col'>
+                            <h3 className='font-bold text-lg'>Sold To : </h3>
+                            <div className='flex align-middle justify-between'>
+                                <p>Rs. {recentBids[0].currentBid}</p>
+                                <p className='font-light' style={{fontSize: "14px"}}>{recentBids[0].userEntity.username}</p>
+                            </div>
+                        </div>
+                }
 
                 <Divider orientation='horizontal' />
                 <div className='flex flex-col my-3'>
@@ -185,11 +194,12 @@ const LiveAuction = ({product}) => {
                             </div>
                     }
 
+                    {(product.auction.userEntity.username == user.username) ?
+                        <div className='mt-8 text-center'>
 
-                    <div className='mt-8 text-center'>
-
-                        <Button variant='contained' sx={{bgcolor:'#004d91'}} onClick={handleClickOpen}>View Winner</Button>
-                    </div>
+                            <Button variant='contained' sx={{bgcolor:'#004d91'}} onClick={handleClickOpen}>View Winner</Button>
+                        </div>
+                     : null}
 
                 </div>
             </>
